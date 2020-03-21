@@ -1,5 +1,8 @@
 {
     "private": true,
+    "bin": {
+        "cross-env": "dist/bin/cross-env.js"
+    },
     "scripts": {
         "dev": "npm run development",
         "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
@@ -25,6 +28,7 @@
     "dependencies": {
         "axios": "^0.19.2",
         "vue-axios": "^2.1.5",
+        "vuejs-paginator": "^2.0.2",
         "vuex": "^3.1.3"
     }
 }

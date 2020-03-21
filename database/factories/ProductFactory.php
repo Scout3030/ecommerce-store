@@ -15,6 +15,7 @@ $factory->define(Product::class, function (Faker $faker) {
 		'description' => $faker->sentence,
 		'color_id' => \App\Color::all()->random()->id,
 		'keywords' => "{$faker->word}, {$faker->word}, {$faker->word}",
+		'description' => $faker->sentence,
 		'cost' => $cost,
 		'price' => $cost * 2,
 		'slug' => str_slug($name, '-'),

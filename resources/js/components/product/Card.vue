@@ -10,9 +10,9 @@
 				</ul>
 			</div>
 			<div class="card-body">
-				<p>Accessories</p>
-				<h4 class="card-product__title"><a href="#">Quartz Belt Watch</a></h4>
-				<p class="card-product__price">$150.00</p>
+				<p>{{product.category.name}}</p>
+				<h4 class="card-product__title"><a href="#">{{product.name}}</a></h4>
+				<p class="card-product__price">S/{{product.price}}</p>
 			</div>
 		</div>
 	</div>
@@ -24,7 +24,10 @@
 
         },
         props: {
-
+        	product: {
+        		type: Object,
+        		required: true
+        	}
         },
         methods: {
 

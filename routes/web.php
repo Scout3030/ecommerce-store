@@ -26,6 +26,6 @@ Route::get('/contacto', function () {
 	return view('contact');
 })->name('contact');
 
-Route::get('/tienda', 'ProductController@index')->name('product.index');
+Route::get('/tienda', 'ProductController@home')->name('product.index');
 
 Route::get('/producto/{product}', 'ProductController@show')->name('product.show');

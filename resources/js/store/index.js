@@ -1,6 +1,9 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-// import services from './../modules/services'
+import category from './../modules/category'
+import color from './../modules/color'
+import product from './../modules/product'
+import filter from './../modules/filter'
 
 Vue.use(Vuex)
 
@@ -12,6 +15,9 @@ export default new Vuex.Store({
   actions: {
   },
   modules: {
-
+  	category,
+  	color,
+    product,
+    filter
   }
 })

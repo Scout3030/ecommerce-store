@@ -373,35 +373,7 @@
 			<h2>Productos <span class="section-intro__style">Relacionados ({{count($related)}})</span></h2>
 		</div>
 		<div class="row mt-30">
-			@for($j=1; $j < (count($related)/3 + 1); $j++)
-			<div class="col-sm-6 col-xl-3 mb-4 mb-xl-0">
-				@if(count($related)/($j*3) >= 1)
-				<div class="single-search-product-wrapper">
-					@for($i = ($j*3) - 3; $i < $j*3; $i++)
-					<div class="single-search-product d-flex">
-						<a href="{{route('product.show', $product->slug)}}" target="_BLANK"><img src="{{asset('assets/img/product/product-sm-1.png')}}" alt=""></a>
-						<div class="desc">
-							<a href="{{route('product.show', $product->slug)}}" class="title" target="_BLANK">{{$related[$i]->name}}</a>
-							<div class="price">S/{{$related[$i]->price}}</div>
-						</div>
-					</div>
-					@endfor
-				</div>
-				@else
-				<div class="single-search-product-wrapper">
-					@for($i = ($j*3) - 3; $i < count($related); $i++)
-					<div class="single-search-product d-flex">
-						<a href="{{route('product.show', $product->slug)}}" target="_BLANK"><img src="{{asset('assets/img/product/product-sm-1.png')}}" alt=""></a>
-						<div class="desc">
-							<a href="{{route('product.show', $product->slug)}}" class="title" target="_BLANK">{{$related[$i]->name}}</a>
-							<div class="price">S/{{$related[$i]->price}}</div>
-						</div>
-					</div>
-					@endfor
-				</div>
-				@endif
-			</div>
-			@endfor
+			@include('shared.footer-products', $products = $related)
 		</div>
 	</div>
 </section>
