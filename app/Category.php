@@ -17,6 +17,10 @@ class Category extends Model {
 		});
 	}
 
+	public function pathAttachment() {
+		return "/images/categories/" . $this->picture;
+	}
+
 	public function products() {
 		return $this->hasMany(Product::class);
 	}

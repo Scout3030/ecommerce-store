@@ -29,10 +29,10 @@
     <div class="owl-carousel owl-theme hero-carousel">
       @foreach($categories as $category)
       <div class="hero-carousel__slide">
-        <img src="{{asset('assets/img/home/hero-slide1.png')}}" alt="" class="img-fluid">
+        <img src="{{$category->pathAttachment()}}" alt="" class="img-fluid">
         <a href="#" class="hero-carousel__slideOverlay">
           <h3>{{$category->name}}</h3>
-          <p>Accessories Item</p>
+          <p>{{$category->products->count()}}</p>
         </a>
       </div>
       @endforeach
@@ -53,7 +53,7 @@
         <div class="col-md-6 col-lg-4 col-xl-3">
           <div class="card text-center card-product">
             <div class="card-product__img">
-              <img class="card-img" src="{{asset('assets/img/product/product1.png')}}" alt="">
+              <img class="card-img" src="{{$product->pathAttachment()}}" alt="">
               <!-- <img class="card-img" src="{{$product->pathAttachment()}}" alt=""> -->
               <ul class="card-product__imgOverlay">
                 <li><button><i class="ti-search"></i></button></li>
@@ -105,7 +105,7 @@
         @foreach($news as $product)
         <div class="card text-center card-product">
           <div class="card-product__img">
-            <img class="img-fluid" src="{{asset('assets/img/product/product1.png')}}" alt="">
+            <img class="img-fluid" src="{{$product->pathAttachment()}}" alt="">
             <ul class="card-product__imgOverlay">
               <li><button><i class="ti-search"></i></button></li>
               <li><button><i class="ti-shopping-cart"></i></button></li>
@@ -114,7 +114,7 @@
           </div>
           <div class="card-body">
             <p>{{$product->category->name}}</p>
-            <h4 class="card-product__title"><a href="single-product.html">{{$product->name}}</a></h4>
+            <h4 class="card-product__title"><a href="{{route('product.show', $product->slug)}}">{{$product->name}}</a></h4>
             <p class="card-product__price">S/{{$product->price}}</p>
           </div>
         </div>

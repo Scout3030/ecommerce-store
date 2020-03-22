@@ -14,7 +14,8 @@ class HomeController extends Controller {
 	 */
 	public function index() {
 
-		$categories = Category::limit(3)
+		$categories = Category::limit(6)
+			->withCount('products')
 			->get();
 
 		$topProducts = Product::with(['category'])

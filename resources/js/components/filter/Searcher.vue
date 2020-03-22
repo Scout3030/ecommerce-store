@@ -41,7 +41,9 @@
 	    	...mapActions('product', ['searchProducts']),
 	    	...mapMutations('filter', ['setQuery']),
 	    	search(query){
-	    		console.log(query)
+	    		if (query == '') {
+	    			query = 'all'
+	    		}
 	    		this.setQuery(query)
 	    		this.searchProducts( [this.selectedQuery, this.selectedCategory, this.selectedColor])
 	    	},

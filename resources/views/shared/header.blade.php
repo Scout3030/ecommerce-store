@@ -19,7 +19,7 @@
 
           <ul class="nav-shop">
             <li class="nav-item"><button><i class="ti-search"></i></button></li>
-            <li class="nav-item"><button><i class="ti-shopping-cart"></i><span class="nav-shop__circle">3</span></button> </li>
+            <cart-component></cart-component>
             @include('partials.navigation.'.\App\User::navigation())
             <!-- <li class="nav-item"><a href="{{route('register')}}">Registrate</a></li> -->
           </ul>

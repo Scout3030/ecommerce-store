@@ -20,6 +20,6 @@ $factory->define(Product::class, function (Faker $faker) {
 		'price' => $cost * 2,
 		'slug' => str_slug($name, '-'),
 		'stock' => $faker->randomFloat(0, 0, 100),
-		// 'picture' => \Faker\Provider\Image::image(storage_path() . '/app/public/products', 600, 350, 'business', false),
+		'picture' => 'product' . $faker->numberBetween(1, 8) . '.png',
 	];
 });

@@ -2,6 +2,7 @@
 	<div class="row">
 
 		<product-component v-for="product in products" :product="product"></product-component>
+
 		<!-- <div class="pull-right">
 			<v-paginator
 				v-if="products"
@@ -12,6 +13,7 @@
 		</div> -->
 
     </div>
+
 </template>
 
 <script>
@@ -21,13 +23,12 @@
 	import {mapMutations, mapActions, mapState} from 'vuex'
 	export default {
 		mounted() {
-	      	this.fetchProducts()
+	      	this.searchProducts(['all', 'all', 'all'])
 	    },
 	    data() {
 	      	return {
-	   //      	products: [],
+	        	// newProducts: [],
 				// searching: false,
-				// query: '',
 				// resource_url: '',
 				// options: {
 				// 	remote_current_page: 'current_page',
@@ -50,30 +51,31 @@
 	      // }
 	    },
 		methods: {
-			...mapActions('product', ['fetchProducts']),
+			...mapActions('product', ['searchProducts']),
 			// search: function(){
-			// 	this.products = [];
+			// 	this.newProducts = [];
 			// 	this.searching = true;
-			// 	this.resource_url = 'https://store.dev/api/product'+ this.query+'/search';
+			// 	this.resource_url = 'https://store.dev/api/product/search'+this.selectedQuery+'/'+this.selectedCategory+'/'+this.selectedColor;
 
 			// 	axios.get(this.resource_url)
 			// 		.then((response) => {
 			// 			if (response.body.error) {
 			// 				console.log('Ha ocurrido un error')
 			// 			}else{
-			// 				Vue.set([], 'products', response.body)
+			// 				Vue.set([], 'newProducts', response.body)
 			// 			}
 			// 		});
 
 			// 		this.searching = false;
-			// 		this.query = '';
+
 			// },
-			updateResource: function(data){
-				this.products = data;
-			}
+			// updateResource: function(data){
+			// 	this.newProducts = data;
+			// }
 		},
 	    computed: {
 	      	...mapState('product', ['products']),
+	      	...mapState('filter', ['selectedCategory', 'selectedColor', 'selectedQuery']),
 	    }
 	}
 	

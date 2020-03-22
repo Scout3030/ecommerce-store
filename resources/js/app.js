@@ -4,7 +4,7 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-require('./bootstrap');
+// require('./bootstrap');
 
 window.Vue = require('vue');
 
@@ -16,6 +16,7 @@ Vue.component('filter-component', require('./components/filter/Filter.vue').defa
 Vue.component('searcher-component', require('./components/filter/Searcher.vue').default);
 Vue.component('categories-filter', require('./components/filter/Category.vue').default);
 Vue.component('colors-filter', require('./components/filter/Color.vue').default);
+Vue.component('cart-component', require('./components/cart/Cart.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

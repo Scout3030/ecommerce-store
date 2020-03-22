@@ -9,10 +9,12 @@ class DatabaseSeeder extends Seeder {
 	 * @return void
 	 */
 	public function run() {
-		Storage::deleteDirectory('products');
+		// Storage::deleteDirectory('products');
+		Storage::makeDirectory('categories');
 		Storage::deleteDirectory('users');
 
-		Storage::makeDirectory('products');
+		// Storage::makeDirectory('products');
+		Storage::makeDirectory('categories');
 		Storage::makeDirectory('users');
 
 		factory(\App\Role::class, 1)->create(['name' => 'admin']);

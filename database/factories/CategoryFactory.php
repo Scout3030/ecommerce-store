@@ -10,5 +10,6 @@ $factory->define(Category::class, function (Faker $faker) {
 	return [
 		'name' => $name,
 		'slug' => str_slug($name, '-'),
+		'picture' => 'c' . $faker->numberBetween(1, 5) . '.jpg',
 	];
 });
