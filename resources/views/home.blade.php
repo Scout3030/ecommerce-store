@@ -16,7 +16,7 @@
             <h4>Shop is fun</h4>
             <h1>Browse Our Premium Product</h1>
             <p>Us which over of signs divide dominion deep fill bring they're meat beho upon own earth without morning over third. Their male dry. They are great appear whose land fly grass.</p>
-            <a class="button button-hero" href="#">Browse Now</a>
+            <a class="button button-hero" href="{{route('product.index')}}">Ver productos</a>
           </div>
         </div>
       </div>
@@ -47,31 +47,7 @@
         <p>Artículos populares en nuestra tienda</p>
         <h2>Productos <span class="section-intro__style">Más Pedidos</span></h2>
       </div>
-      <div class="row">
-
-        @foreach($topProducts as $product)
-        <div class="col-md-6 col-lg-4 col-xl-3">
-          <div class="card text-center card-product">
-            <div class="card-product__img">
-              <img class="card-img" src="{{$product->pathAttachment()}}" alt="">
-              <!-- <img class="card-img" src="{{$product->pathAttachment()}}" alt=""> -->
-              <ul class="card-product__imgOverlay">
-                <li><button><i class="ti-search"></i></button></li>
-                <li><button><i class="ti-shopping-cart"></i></button></li>
-                <li><button><i class="ti-heart"></i></button></li>
-              </ul>
-            </div>
-            <div class="card-body">
-              <p>{{$product->category->name}}</p>
-              <h4 class="card-product__title"><a href="{{route('product.show', $product->slug)}}">{{$product->name}}</a></h4>
-              <p class="card-product__price">S/{{$product->price}}</p>
-            </div>
-          </div>
-        </div>
-
-        @endforeach
-
-      </div>
+      <home-best-seller></home-best-seller>
     </div>
   </section>
   <!-- ================ trending product section end ================= -->
@@ -86,7 +62,7 @@
             <h3>Hasta 35% de descuento</h3>
             <h4>Productos más vendidos</h4>
             <p>Por compras superiores a S/100</p>
-            <a class="button button--active mt-3 mt-xl-4" href="#">Comprar ahora</a>
+            <a class="button button--active mt-3 mt-xl-4" href="{{route('product.index')}}">Comprar ahora</a>
           </div>
         </div>
       </div>

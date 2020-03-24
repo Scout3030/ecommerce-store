@@ -12,9 +12,9 @@
         </button>
         <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
           <ul class="nav navbar-nav menu_nav ml-auto mr-auto">
-            <li class="nav-item active"><a class="nav-link" href="{{route('home')}}">Inicio</a></li>
-            <li class="nav-item"><a class="nav-link" href="{{route('product.index')}}">Tienda</a></li>
-            <li class="nav-item"><a class="nav-link" href="{{route('contact')}}">Contacto</a></li>
+            <li class="nav-item @if(Request::is('/')) active @endif"><a class="nav-link" href="{{route('home')}}">Inicio</a></li>
+            <li class="nav-item @if(Request::is('tienda')) active @endif"><a class="nav-link" href="{{route('product.index')}}">Tienda</a></li>
+            <li class="nav-item @if(Request::is('contacto')) active @endif"><a class="nav-link" href="{{route('contact')}}">Contacto</a></li>
           </ul>
 
           <ul class="nav-shop">

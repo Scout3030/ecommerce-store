@@ -10,12 +10,12 @@ class DatabaseSeeder extends Seeder {
 	 */
 	public function run() {
 		// Storage::deleteDirectory('products');
-		Storage::makeDirectory('categories');
-		Storage::deleteDirectory('users');
+		// Storage::makeDirectory('categories');
+		// Storage::deleteDirectory('users');
 
 		// Storage::makeDirectory('products');
-		Storage::makeDirectory('categories');
-		Storage::makeDirectory('users');
+		// Storage::makeDirectory('categories');
+		// Storage::makeDirectory('users');
 
 		factory(\App\Role::class, 1)->create(['name' => 'admin']);
 		factory(\App\Role::class, 1)->create(['name' => 'user']);
@@ -44,5 +44,11 @@ class DatabaseSeeder extends Seeder {
 		factory(\App\Color::class, 5)->create();
 
 		factory(\App\Product::class, 50)->create();
+
+		factory(\App\Template::class, 1)->create([
+			'email' => 'contact@mail.com',
+			'address' => 'My address',
+			'phone' => '+51 987-644223',
+		]);
 	}
 }

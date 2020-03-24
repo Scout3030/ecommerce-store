@@ -28,4 +28,11 @@ Route::get('/contacto', function () {
 
 Route::get('/tienda', 'ProductController@home')->name('product.index');
 
-Route::get('/producto/{product}', 'ProductController@show')->name('product.show');
+Route::group(['prefix' => 'producto'], function () {
+	Route::get('/{product}', 'ProductController@show')->name('product.show');
+	Route::post('/add_review', 'ProductController@addReview')->name('product.add_review');
+});
+
+Route::get('/carrito', function () {
+	return view('cart');
+})->name('cart');

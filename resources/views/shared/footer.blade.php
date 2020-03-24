@@ -5,7 +5,7 @@
       <div class="row section_gap">
         <div class="col-lg-3 col-md-6 col-sm-6">
           <div class="single-footer-widget tp_widgets">
-            <h4 class="footer_title large_title">Our Mission</h4>
+            <h4 class="footer_title large_title">Nuestra Misión</h4>
             <p>
               So seed seed green that winged cattle in. Gathering thing made fly you're no
               divided deep moved us lan Gathering thing us land years living.
@@ -17,57 +17,34 @@
         </div>
         <div class="offset-lg-1 col-lg-2 col-md-6 col-sm-6">
           <div class="single-footer-widget tp_widgets">
-            <h4 class="footer_title">Quick Links</h4>
+            <h4 class="footer_title">Links</h4>
             <ul class="list">
-              <li><a href="#">Home</a></li>
-              <li><a href="#">Shop</a></li>
-              <li><a href="#">Blog</a></li>
-              <li><a href="#">Product</a></li>
-              <li><a href="#">Brand</a></li>
-              <li><a href="#">Contact</a></li>
+              <li><a href="{{route('home')}}">Inicio</a></li>
+              <li><a href="{{route('product.index')}}">Tienda</a></li>
+              <li><a href="{{route('contact')}}">Contacto</a></li>
             </ul>
           </div>
         </div>
-        <div class="col-lg-2 col-md-6 col-sm-6">
-          <div class="single-footer-widget instafeed">
-            <h4 class="footer_title">Gallery</h4>
-            <ul class="list instafeed d-flex flex-wrap">
-              <li><img src="{{asset('assets/img/gallery/r1.jpg')}}" alt=""></li>
-              <li><img src="{{asset('assets/img/gallery/r2.jpg')}}" alt=""></li>
-              <li><img src="{{asset('assets/img/gallery/r3.jpg')}}" alt=""></li>
-              <li><img src="{{asset('assets/img/gallery/r5.jpg')}}" alt=""></li>
-              <li><img src="{{asset('assets/img/gallery/r7.jpg')}}" alt=""></li>
-              <li><img src="{{asset('assets/img/gallery/r8.jpg')}}" alt=""></li>
-            </ul>
-          </div>
-        </div>
-        <div class="offset-lg-1 col-lg-3 col-md-6 col-sm-6">
+
+        <div class="offset-lg-3 col-lg-3 col-md-6 col-sm-6">
           <div class="single-footer-widget tp_widgets">
-            <h4 class="footer_title">Contact Us</h4>
+            <h4 class="footer_title">Contáctanos</h4>
             <div class="ml-40">
               <p class="sm-head">
                 <span class="fa fa-location-arrow"></span>
-                Head Office
+                Dirección
               </p>
-              <p>123, Main Street, Your City</p>
-
+              <p>{{App\Template::get()->first()->address}}</p>
               <p class="sm-head">
                 <span class="fa fa-phone"></span>
-                Phone Number
+                Teléfono
               </p>
-              <p>
-                +123 456 7890 <br>
-                +123 456 7890
-              </p>
-
+              <p>{{App\Template::get()->first()->phone}}</p>
               <p class="sm-head">
                 <span class="fa fa-envelope"></span>
-                Email
+                Correo
               </p>
-              <p>
-                free@infoexample.com <br>
-                www.infoexample.com
-              </p>
+              <p>{{App\Template::get()->first()->email}}</p>
             </div>
           </div>
         </div>
@@ -86,9 +63,7 @@
       </div>
       <div class="row d-flex">
         <p class="col-lg-12 footer-text text-center">
-          <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-          This store was configured <i class="fa fa-user" aria-hidden="true"></i> by <a href="javascript:void(0)" target="_blank">Roberth Rodríguez</a>
-          <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+          This store was configured <i class="fa fa-user" aria-hidden="true"></i> by <a href="javascript:void(0)">Roberth Rodríguez</a>
         </p>
       </div>
     </div>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Category;
 use App\Color;
 use App\Product;
+use App\Review;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller {
@@ -140,9 +141,12 @@ class ProductController extends Controller {
 			'category' => function ($q) {
 				$q->select('id', 'name');
 			},
+			'reviews.user',
 		])->get();
 
 		$related = $product->relatedProducts();
+
+		// dd($product);
 
 		return view('product.show', compact('product', 'related'));
 	}
@@ -176,5 +180,15 @@ class ProductController extends Controller {
 	 */
 	public function destroy(Product $product) {
 		//
+	}
+
+	public function addReview() {
+		Review::create([
+			"user_id" => auth()->id(),
+			"product_id" => request('product_id'),
+			"rating" => (int) request('rating_input'),
+			"comment" => request('message'),
+		]);
+		return back()->with('message', ['success', __('Muchas gracias por valorar el curso')]);
 	}
 }

@@ -4,9 +4,9 @@
 			<div class="card-product__img">
 				<img class="card-img" :src="getImage(product.picture)" alt="">
 				<ul class="card-product__imgOverlay">
-					<li><button><i class="ti-search"></i></button></li>
+					<li><button @click="redirectToProduct(product)"><i class="ti-search"></i></button></li>
 					<li><button @click="addToCart(product)"><i class="ti-shopping-cart"></i></button></li>
-					<li><button><i class="ti-heart"></i></button></li>
+					<!-- <li><button><i class="ti-heart"></i></button></li> -->
 				</ul>
 			</div>
 			<div class="card-body">
@@ -40,6 +40,9 @@
         	addToCart(product){
         		console.log(product)
         		this.addProduct(product)
+        	},
+        	redirectToProduct(product){
+        		window.open(`/producto/${product.slug}`, '_blank');
         	}
         },
         computed: {

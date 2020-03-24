@@ -59,12 +59,8 @@
 				 aria-selected="false">Especificaciones</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact"
-				 aria-selected="false">Comentarios</a>
-			</li>
-			<li class="nav-item">
 				<a class="nav-link active" id="review-tab" data-toggle="tab" href="#review" role="tab" aria-controls="review"
-				 aria-selected="false">Revisiones</a>
+				 aria-selected="false">Opiniones</a>
 			</li>
 		</ul>
 		<div class="tab-content" id="myTabContent">
@@ -157,89 +153,6 @@
 					</table>
 				</div>
 			</div>
-			<div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-				<div class="row">
-					<div class="col-lg-6">
-						<div class="comment_list">
-							<div class="review_item">
-								<div class="media">
-									<div class="d-flex">
-										<img src="{{asset('assets/img/product/review-1.png')}}" alt="">
-									</div>
-									<div class="media-body">
-										<h4>Blake Ruiz</h4>
-										<h5>12th Feb, 2018 at 05:56 pm</h5>
-										<a class="reply_btn" href="#">Reply</a>
-									</div>
-								</div>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-									dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-									commodo</p>
-							</div>
-							<div class="review_item reply">
-								<div class="media">
-									<div class="d-flex">
-										<img src="{{asset('assets/img/product/review-2.png')}}" alt="">
-									</div>
-									<div class="media-body">
-										<h4>Blake Ruiz</h4>
-										<h5>12th Feb, 2018 at 05:56 pm</h5>
-										<a class="reply_btn" href="#">Reply</a>
-									</div>
-								</div>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-									dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-									commodo</p>
-							</div>
-							<div class="review_item">
-								<div class="media">
-									<div class="d-flex">
-										<img src="{{asset('assets/img/product/review-3.png')}}" alt="">
-									</div>
-									<div class="media-body">
-										<h4>Blake Ruiz</h4>
-										<h5>12th Feb, 2018 at 05:56 pm</h5>
-										<a class="reply_btn" href="#">Reply</a>
-									</div>
-								</div>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-									dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-									commodo</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-6">
-						<div class="review_box">
-							<h4>Post a comment</h4>
-							<form class="row contact_form" action="contact_process.php" method="post" id="contactForm" novalidate="novalidate">
-								<div class="col-md-12">
-									<div class="form-group">
-										<input type="text" class="form-control" id="name" name="name" placeholder="Your Full name">
-									</div>
-								</div>
-								<div class="col-md-12">
-									<div class="form-group">
-										<input type="email" class="form-control" id="email" name="email" placeholder="Email Address">
-									</div>
-								</div>
-								<div class="col-md-12">
-									<div class="form-group">
-										<input type="text" class="form-control" id="number" name="number" placeholder="Phone Number">
-									</div>
-								</div>
-								<div class="col-md-12">
-									<div class="form-group">
-										<textarea class="form-control" name="message" id="message" rows="1" placeholder="Message"></textarea>
-									</div>
-								</div>
-								<div class="col-md-12 text-right">
-									<button type="submit" value="submit" class="btn primary-btn">Submit Now</button>
-								</div>
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
 			<div class="tab-pane fade show active" id="review" role="tabpanel" aria-labelledby="review-tab">
 				<div class="row">
 					<div class="col-lg-6">
@@ -270,93 +183,28 @@
 							</div>
 						</div>
 						<div class="review_list">
+							@forelse($product->reviews as $review)
 							<div class="review_item">
 								<div class="media">
 									<div class="d-flex">
-										<img src="{{asset('assets/img/product/review-1.png')}}" alt="">
+										<img src="{{$review->user->pathAttachment()}}" alt="">
 									</div>
 									<div class="media-body">
-										<h4>Blake Ruiz</h4>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
+										<h4>{{ucfirst($review->user->name)}}</h4>
+										@include('partials.product.rating', ['rating' => $review->rating])
 									</div>
 								</div>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-									dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-									commodo</p>
+								<p>{{$review->comment}}</p>
 							</div>
+							@empty
 							<div class="review_item">
-								<div class="media">
-									<div class="d-flex">
-										<img src="{{asset('assets/img/product/review-2.png')}}" alt="">
-									</div>
-									<div class="media-body">
-										<h4>Blake Ruiz</h4>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-									</div>
-								</div>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-									dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-									commodo</p>
+								<p>Este producto aún no tiene comentarios</p>
 							</div>
-							<div class="review_item">
-								<div class="media">
-									<div class="d-flex">
-										<img src="{{asset('assets/img/product/review-3.png')}}" alt="">
-									</div>
-									<div class="media-body">
-										<h4>Blake Ruiz</h4>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-									</div>
-								</div>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-									dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-									commodo</p>
-							</div>
+							@endforelse
+
 						</div>
 					</div>
-					<div class="col-lg-6">
-						<div class="review_box">
-							<h4>Add a Review</h4>
-							<p>Your Rating:</p>
-							<ul class="list">
-								<li><a href="#"><i class="fa fa-star"></i></a></li>
-								<li><a href="#"><i class="fa fa-star"></i></a></li>
-								<li><a href="#"><i class="fa fa-star"></i></a></li>
-								<li><a href="#"><i class="fa fa-star"></i></a></li>
-								<li><a href="#"><i class="fa fa-star"></i></a></li>
-							</ul>
-							<p>Outstanding</p>
-				            <form action="#/" class="form-contact form-review mt-3">
-				              <div class="form-group">
-				                <input class="form-control" name="name" type="text" placeholder="Enter your name" required>
-				              </div>
-				              <div class="form-group">
-				                <input class="form-control" name="email" type="email" placeholder="Enter email address" required>
-				              </div>
-				              <div class="form-group">
-				                <input class="form-control" name="subject" type="text" placeholder="Enter Subject">
-				              </div>
-				              <div class="form-group">
-				                <textarea class="form-control different-control w-100" name="textarea" id="textarea" cols="30" rows="5" placeholder="Enter Message"></textarea>
-				              </div>
-				              <div class="form-group text-center text-md-right mt-3">
-				                <button type="submit" class="button button--active button-review">Submit Now</button>
-				              </div>
-				            </form>
-						</div>
-					</div>
+					@include('partials.product.review-form')
 				</div>
 			</div>
 		</div>
