@@ -22,9 +22,25 @@ Route::get('/images/{path}/{attachment}', function ($path, $attachment) {
 
 Route::get('/', 'HomeController@index')->name('home');
 
+Route::get('/nosotros', function () {
+	return view('about');
+})->name('about');
+
+Route::get('/opiniones', function () {
+	return view('reviews');
+})->name('reviews');
+
+Route::get('/preguntas-frecuentes', function () {
+	return view('FAQ');
+})->name('FAQ');
+
 Route::get('/contacto', function () {
 	return view('contact');
 })->name('contact');
+
+Route::get('/checkout', function () {
+	return view('checkout');
+})->name('checkout');
 
 Route::get('/tienda', 'ProductController@home')->name('product.index');
 

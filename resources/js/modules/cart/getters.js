@@ -6,7 +6,7 @@ export function totalCost(state){
 
 export function totalProducts(state){
 	return state.cart.reduce((sum, product) => {
-		return product.qty + sum
+		return parseInt(product.qty) + sum
 	}, 0)
 	// return state.cart.length
 }

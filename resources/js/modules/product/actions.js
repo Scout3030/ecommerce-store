@@ -72,7 +72,7 @@ export async function fetchBestSellers ({commit}){
 	
 	try {
 		const {data} = await Vue.axios({
-			url: '/api/product'
+			url: '/api/product/best-seller/product'
 		})
 		commit('product/setProducts', data, {root: true})
 	} catch(e) {

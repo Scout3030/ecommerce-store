@@ -21,4 +21,7 @@ Route::apiResource('category', 'CategoryController');
 Route::apiResource('color', 'ColorController');
 Route::apiResource('product', 'ProductController');
 
-Route::get('/product/search/{query}/{category?}/{color?}', 'ProductController@showProducts');
+Route::group(['prefix' => 'product'], function () {
+	Route::get('/best-seller/product', 'ProductController@bestSeller');
+	Route::get('/search/{query}/{category?}/{color?}', 'ProductController@showProducts');
+});

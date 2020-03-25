@@ -2,53 +2,13 @@
 
 @section('content')
 
-<!-- ================ start banner area ================= -->
-<section class="blog-banner-area" id="contact">
-	<div class="container h-100">
-		<div class="blog-banner">
-			<div class="text-center">
-				<h1>Contact Us</h1>
-				<nav aria-label="breadcrumb" class="banner-breadcrumb">
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="#">Home</a></li>
-          <li class="breadcrumb-item active" aria-current="page">Contact Us</li>
-        </ol>
-      </nav>
-			</div>
-		</div>
-</div>
-</section>
-<!-- ================ end banner area ================= -->
+@include('shared.breadcrumb', ['title' => 'Contacto'])
 
 <!-- ================ contact section start ================= -->
 <section class="section-margin--small">
 <div class="container">
   <div class="d-none d-sm-block mb-5 pb-4">
     <div id="map" style="height: 420px;"></div>
-    <script>
-      function initMap() {
-        var uluru = {lat: -25.363, lng: 131.044};
-        var grayStyles = [
-          {
-            featureType: "all",
-            stylers: [
-              { saturation: -90 },
-              { lightness: 50 }
-            ]
-          },
-          {elementType: 'labels.text.fill', stylers: [{color: '#A3A3A3'}]}
-        ];
-        var map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: -31.197, lng: 150.744},
-          zoom: 9,
-          styles: grayStyles,
-          scrollwheel:  false
-        });
-      }
-
-    </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpfS1oRGreGSBU5HHjMmQ3o5NLw7VdJ6I&callback=initMap"></script>
-
   </div>
 
 
@@ -57,22 +17,22 @@
       <div class="media contact-info">
         <span class="contact-info__icon"><i class="ti-home"></i></span>
         <div class="media-body">
-          <h3>California United States</h3>
-          <p>Santa monica bullevard</p>
+          <h3>{{App\Template::get()->first()->address}}</h3>
+          <p>Lima</p>
         </div>
       </div>
       <div class="media contact-info">
         <span class="contact-info__icon"><i class="ti-headphone"></i></span>
         <div class="media-body">
-          <h3><a href="tel:454545654">00 (440) 9865 562</a></h3>
-          <p>Mon to Fri 9am to 6pm</p>
+          <h3><a href="tel:{{App\Template::get()->first()->phone}}">{{App\Template::get()->first()->phone}}</a></h3>
+          <p>Lun a Vie 9am a 6pm</p>
         </div>
       </div>
       <div class="media contact-info">
         <span class="contact-info__icon"><i class="ti-email"></i></span>
         <div class="media-body">
-          <h3><a href="mailto:support@colorlib.com">support@colorlib.com</a></h3>
-          <p>Send us your query anytime!</p>
+          <h3><a href="mailto:support@colorlib.com">{{App\Template::get()->first()->email}}</a></h3>
+          <p>Envíanos un mensaje a cualquier hora!</p>
         </div>
       </div>
     </div>
@@ -81,23 +41,23 @@
         <div class="row">
           <div class="col-lg-5">
             <div class="form-group">
-              <input class="form-control" name="name" id="name" type="text" placeholder="Enter your name">
+              <input class="form-control" name="name" id="name" type="text" placeholder="Ingresa tu nombre">
             </div>
             <div class="form-group">
-              <input class="form-control" name="email" id="email" type="email" placeholder="Enter email address">
+              <input class="form-control" name="email" id="email" type="email" placeholder="Ingresa tu correo">
             </div>
             <div class="form-group">
-              <input class="form-control" name="subject" id="subject" type="text" placeholder="Enter Subject">
+              <input class="form-control" name="subject" id="subject" type="text" placeholder="Ingresa el asunto">
             </div>
           </div>
           <div class="col-lg-7">
             <div class="form-group">
-                <textarea class="form-control different-control w-100" name="message" id="message" cols="30" rows="5" placeholder="Enter Message"></textarea>
+                <textarea class="form-control different-control w-100" name="message" id="message" cols="30" rows="5" placeholder="Ingresa tu mensaje"></textarea>
             </div>
           </div>
         </div>
         <div class="form-group text-center text-md-right mt-3">
-          <button type="submit" class="button button--active button-contactForm">Send Message</button>
+          <button type="submit" class="button button--active button-contactForm">Enviar mensaje</button>
         </div>
       </form>
     </div>
@@ -113,5 +73,31 @@
 <script src="{{asset('assets/vendors/jquery.form.js')}}"></script>
 <script src="{{asset('assets/vendors/jquery.validate.min.js')}}"></script>
 <script src="{{asset('assets/vendors/contact.js')}}"></script>
+<script>
+  function initMap() {
+    var uluru = {lat: -25.363, lng: 131.044};
+    var grayStyles = [
+      {
+        featureType: "all",
+        stylers: [
+          { saturation: -90 },
+          { lightness: 50 }
+        ]
+      },
+      {elementType: 'labels.text.fill', stylers: [{color: '#A3A3A3'}]}
+    ];
+    var map = new google.maps.Map(document.getElementById('map'), {
+      center: {lat: -12.0448886, lng: -77.0451961},
+      zoom: 15.25,
+      styles: grayStyles,
+      scrollwheel:  false
+    });
+  }
 
+  $(document).ready(function(){
+    initMap()
+  })
+
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpfS1oRGreGSBU5HHjMmQ3o5NLw7VdJ6I&callback=initMap"></script>
 @endpush

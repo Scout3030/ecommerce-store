@@ -12,40 +12,12 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr v-for="product in cart">
-						<td>
-							<div class="media">
-								<div class="d-flex">
-									<img :src="getImage(product.picture)" alt="" height="150px">
-								</div>
-								<div class="media-body">
-									<p>{{product.name}}</p>
-								</div>
-							</div>
-						</td>
-						<td>
-							<h5>S/{{product.price}}</h5>
-						</td>
-						<td>
-							<div class="product_count">
-								<input type="number" name="qty" id="sst" maxlength="12" :value="product.qty" class="input-text qty" min="1">
-								<button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
-								class="increase items-count" type="button"><i class="lnr lnr-chevron-up"></i></button>
-								<button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
-								class="reduced items-count" type="button"><i class="lnr lnr-chevron-down"></i></button>
-							</div>
-						</td>
-						<td>
-							<h5>S/{{product.qty * product.price}}</h5>
-						</td>
-						<td>
-							<button class="btn" title="Eliminar"><i class="fa fa-trash"></i></button>
-						</td>
-					</tr>
+
+					<card v-for="product in cart" :product="product" :key="product.id">
+					</card>
 					
 					<tr class="bottom_button">
 						<td>
-							<a class="button" href="#">Update Cart</a>
 						</td>
 						<td>
 						</td>
@@ -53,9 +25,9 @@
 						</td>
 						<td>
 							<div class="cupon_text d-flex align-items-center">
-								<input type="text" placeholder="Coupon Code">
-								<a class="primary-btn" href="#">Apply</a>
-								<a class="button" href="#">Have a Coupon?</a>
+								<input type="text" placeholder="Código de cupón">
+								<a class="primary-btn" href="#">Aplicar</a>
+								<a class="button" href="#">¿Tienes un cupón?</a>
 							</div>
 						</td>
 					</tr>
@@ -77,29 +49,32 @@
 						<td>
 						</td>
 						<td>
-							<h5>Shipping</h5>
+							<h5>Envío</h5>
 						</td>
 						<td>
 							<div class="shipping_box">
 								<ul class="list">
-									<li><a href="#">Flat Rate: $5.00</a></li>
-									<li><a href="#">Free Shipping</a></li>
-									<li><a href="#">Flat Rate: $10.00</a></li>
-									<li class="active"><a href="#">Local Delivery: $2.00</a></li>
+									<li><a href="javascript:void(0)">Envío gratis</a></li>
+									<li><a href="javascript:void(0)">Recojo en tienda</a></li>
+									<li class="active" v-if="lima" @click="lima = true; olva = false"><a href="javascript:void(0)">Lima Metropolitana</a></li>
+									<li v-else @click="lima = true; olva = false"><a href="javascript:void(0)">Lima Metropolitana</a></li>
+									<li class="active" v-if="olva" @click="olva=true; lima = false"><a href="javascript:void(0)">Olva Courier: S/15.00</a></li>
+									<li v-else @click="olva=true; lima = false"><a href="javascript:void(0)">Olva Courier: S/15.00</a></li>
+									<li><a href="javascript:void(0)">Agencia de transporte: S/15.00</a></li>
 								</ul>
-								<h6>Calculate Shipping <i class="fa fa-caret-down" aria-hidden="true"></i></h6>
-								<select class="shipping_select">
-									<option value="1">Bangladesh</option>
-									<option value="2">India</option>
-									<option value="4">Pakistan</option>
+								<h6>Calcular envío <i class="fa fa-caret-down" aria-hidden="true"></i></h6>
+								<select class="shipping_select" v-if="lima">
+									<option value="1">Lince</option>
+									<option value="2">Pueblo libre</option>
+									<option value="4">Magdalena del Mar</option>
 								</select>
-								<select class="shipping_select">
-									<option value="1">Select a State</option>
-									<option value="2">Select a State</option>
-									<option value="4">Select a State</option>
+								<select class="shipping_select" v-if="olva">
+									<option value="1">La libertad</option>
+									<option value="2">Cajamarca</option>
+									<option value="4">Piura</option>
 								</select>
 								<input type="text" placeholder="Postcode/Zipcode">
-								<a class="gray_btn" href="#">Update Details</a>
+								<a class="gray_btn" href="javascript:void(0)">Actualizar</a>
 							</div>
 						</td>
 					</tr>
@@ -112,8 +87,8 @@
 						</td>
 						<td>
 							<div class="checkout_btn_inner d-flex align-items-center">
-								<a class="gray_btn" href="#">Continue Shopping</a>
-								<a class="primary-btn ml-2" href="#">Proceed to checkout</a>
+								<a class="gray_btn" href="javascript:void(0)">Seguir comprando</a>
+								<a class="primary-btn ml-2" href="/checkout">Proceder a Pagar</a>
 							</div>
 						</td>
 					</tr>
@@ -124,13 +99,18 @@
 </template>
 
 <script>
-	import {mapState, mapGetters} from 'vuex'
+	import Card from './Card'
+	import {mapState, mapGetters, mapMutations} from 'vuex'
 	export default {
-		methods: {
-			
-			getImage(attachment){
-				return `/images/products/${attachment}`
+		data(){
+			return {
+				lima: false,
+				olva: false,
+				selected: true
 			}
+		},
+		components: {
+			Card
 		},
 		computed: {
 			...mapGetters('cart', ['totalCost']),

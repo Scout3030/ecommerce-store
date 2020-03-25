@@ -1,7 +1,7 @@
 <template>
 	<div class="row">
 
-		<product-component v-for="product in products" :product="product"></product-component>
+		<product-component v-for="product in products" :product="product" :key="product.id"></product-component>
 
 		<!-- <div class="pull-right">
 			<v-paginator

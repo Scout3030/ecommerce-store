@@ -191,4 +191,11 @@ class ProductController extends Controller {
 		]);
 		return back()->with('message', ['success', __('Muchas gracias por valorar el curso')]);
 	}
+
+	public function bestSeller() {
+
+		$products = Product::with(['category'])->limit(12)->get();
+		// dd($products);
+		return response()->json($products);
+	}
 }

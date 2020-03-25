@@ -14,3 +14,8 @@ export function addProduct(state, product){
 export function removeProductFromCart(state, product){
 	state.cart = filter(state.cart, ({id}) => id !== product.id)
 }
+
+export function updateQty(state,{ product, qty}){
+	const productInCart = find(state.cart, {id: product.id})
+	productInCart.qty = parseInt(qty)
+}

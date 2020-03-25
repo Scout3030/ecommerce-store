@@ -38,7 +38,6 @@
         		return `/producto/${slug}`
         	},
         	addToCart(product){
-        		console.log(product)
         		this.addProduct(product)
         	},
         	redirectToProduct(product){
