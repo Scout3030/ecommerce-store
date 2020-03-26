@@ -12,10 +12,10 @@ $factory->define(Product::class, function (Faker $faker) {
 	return [
 		'name' => $name,
 		'category_id' => \App\Category::all()->random()->id,
-		'description' => $faker->sentence,
 		'color_id' => \App\Color::all()->random()->id,
 		'keywords' => "{$faker->word}, {$faker->word}, {$faker->word}",
-		'description' => $faker->sentence,
+		'short_description' => $faker->sentence,
+		'long_description' => $faker->sentence,
 		'cost' => $cost,
 		'price' => $cost * 2,
 		'slug' => str_slug($name, '-'),

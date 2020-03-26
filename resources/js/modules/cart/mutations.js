@@ -15,7 +15,13 @@ export function removeProductFromCart(state, product){
 	state.cart = filter(state.cart, ({id}) => id !== product.id)
 }
 
-export function updateQty(state,{ product, qty}){
+export function updateQty(state, {product, qty}){
 	const productInCart = find(state.cart, {id: product.id})
-	productInCart.qty = parseInt(qty)
+	if (!productInCart) {
+		const copy = Object.assign({}, product)
+		copy.qty = parseInt(qty)
+		state.cart.push(copy)
+	}else{
+		productInCart.qty = parseInt(qty)
+	}
 }

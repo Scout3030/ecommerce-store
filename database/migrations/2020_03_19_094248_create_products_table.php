@@ -19,7 +19,8 @@ class CreateProductsTable extends Migration {
 			$table->unsignedInteger('color_id');
 			$table->foreign('color_id')->references('id')->on('colors');
 			$table->string('keywords')->nullable();
-			$table->string('description')->nullable();
+			$table->string('short_description')->nullable();
+			$table->string('long_description')->nullable();
 			$table->string('picture')->nullable();
 			$table->float('cost', 8, 2);
 			$table->float('price', 8, 2);

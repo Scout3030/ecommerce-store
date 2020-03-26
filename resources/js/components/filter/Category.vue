@@ -29,12 +29,6 @@
         		selected: false
         	}
         },
-        props: {
-        	// category: {
-        	// 	type: Object,
-        	// 	required: true
-        	// }
-        }, 
         methods: {
         	...mapActions('category', ['fetchCategories']),
         	...mapActions('product', ['searchProducts']),

@@ -70,36 +70,6 @@
   </section>
   <!-- ================ offer section end ================= -->
 
-  <!-- ================ Best Selling item  carousel ================= -->
-  <section class="section-margin calc-60px">
-    <div class="container">
-      <div class="section-intro pb-60px">
-        <p>Nuevos en nuestra tienda</p>
-        <h2>Productos <span class="section-intro__style">Nuevos</span></h2>
-      </div>
-      <div class="owl-carousel owl-theme" id="bestSellerCarousel">
-        @foreach($news as $product)
-        <div class="card text-center card-product">
-          <div class="card-product__img">
-            <img class="img-fluid" src="{{$product->pathAttachment()}}" alt="">
-            <ul class="card-product__imgOverlay">
-              <li><button><i class="ti-search"></i></button></li>
-              <li><button><i class="ti-shopping-cart"></i></button></li>
-              <li><button><i class="ti-heart"></i></button></li>
-            </ul>
-          </div>
-          <div class="card-body">
-            <p>{{$product->category->name}}</p>
-            <h4 class="card-product__title"><a href="{{route('product.show', $product->slug)}}">{{$product->name}}</a></h4>
-            <p class="card-product__price">S/{{$product->price}}</p>
-          </div>
-        </div>
-        @endforeach
-      </div>
-    </div>
-  </section>
-  <!-- ================ Best Selling item  carousel end ================= -->
-
   <!-- ================ Subscribe section start ================= -->
   @include('shared.newsletter')
   <!-- ================ Subscribe section end ================= -->

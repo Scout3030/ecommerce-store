@@ -4,7 +4,7 @@
 		<td>
 			<div class="media">
 				<div class="d-flex">
-					<img :src="getImage(product.picture)" alt="" height="150px">
+					<img :src="$getImageUrl(product.picture)" alt="" height="150px">
 				</div>
 				<div class="media-body">
 					<p>{{product.name}}</p>
@@ -31,7 +31,7 @@
 </template>
 
 <script>
-	import {mapState, mapGetters, mapMutations} from 'vuex'
+	import {mapMutations} from 'vuex'
 	export default {
 		data(){
 			return {
@@ -46,15 +46,10 @@
 		},
 		methods: {
 			...mapMutations('cart', ['addProduct', 'removeProductFromCart', 'updateQty']),
-			getImage(attachment){
-				return `/images/products/${attachment}`
-			},
 			removeProduct(product){
 				this.removeProductFromCart(product)
 			},
 			updateQuantity(product, qty){
-				console.log("product", product);
-				console.log("qty", qty);
 				this.updateQty({product, qty})
 			}
 		}

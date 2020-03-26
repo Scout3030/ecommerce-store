@@ -50,5 +50,34 @@ class DatabaseSeeder extends Seeder {
 			'address' => 'My address',
 			'phone' => '+51 987-644223',
 		]);
+
+		factory(\App\Shipping::class, 1)->create([
+			'name' => 'Gratis',
+		]);
+		factory(\App\Shipping::class, 1)->create([
+			'name' => 'Recojo en tienda',
+		]);
+		factory(\App\Shipping::class, 1)->create([
+			'name' => 'Lima Metropolitana',
+		]);
+		factory(\App\Shipping::class, 1)->create([
+			'name' => 'Olva Courier',
+		]);
+		factory(\App\Shipping::class, 1)->create([
+			'name' => 'Agencia de transporte',
+		]);
+
+		factory(\App\PaymentMethod::class, 1)->create([
+			'name' => 'Depósito en cuenta',
+		]);
+		factory(\App\PaymentMethod::class, 1)->create([
+			'name' => 'Mercadopago',
+		]);
+		factory(\App\PaymentMethod::class, 1)->create([
+			'name' => 'PayU',
+		]);
+		factory(\App\PaymentMethod::class, 1)->create([
+			'name' => 'Paypal',
+		]);
 	}
 }

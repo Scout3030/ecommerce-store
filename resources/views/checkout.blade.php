@@ -10,103 +10,58 @@
 	@guest
     <div class="returning_customer">
         <div class="check_title">
-            <h2>Returning Customer? <a href="#">Click here to login</a></h2>
+            <h2>¿Tienes una cuenta? <a href="#">Click aqui para ingresat</a></h2>
         </div>
-        <p>If you have shopped with us before, please enter your details in the boxes below. If you are a new
-            customer, please proceed to the Billing & Shipping section.</p>
-        <form class="row contact_form" action="#" method="post" novalidate="novalidate">
+        <p>Si ya ha comprado con nosotros, ingrese sus datos en el formulario siguiente. Si es un cliente nuevo, vaya a la sección Facturación y envío.</p>
+        <form class="row contact_form" action="{{route('login')}}" method="post" novalidate="novalidate">
+            @csrf
             <div class="col-md-6 form-group p_star">
-                <input type="text" class="form-control" placeholder="Username or Email*" onfocus="this.placeholder=''" onblur="this.placeholder = 'Username or Email*'" id="name" name="name">
-                <!-- <span class="placeholder" data-placeholder="Username or Email"></span> -->
+                <input type="text" class="form-control" placeholder="Email" id="name" name="name">
             </div>
             <div class="col-md-6 form-group p_star">
-                <input type="password" class="form-control" placeholder="Password*" onfocus="this.placeholder=''" onblur="this.placeholder = 'Password*'" id="password" name="password">
-                <!-- <span class="placeholder" data-placeholder="Password"></span> -->
+                <input type="password" class="form-control" placeholder="Contraseña" id="password" name="password">
             </div>
             <div class="col-md-12 form-group">
-                <button type="submit" value="submit" class="button button-login">login</button>
+                <button type="submit" value="submit" class="button button-login">Ingresar</button>
                 <div class="creat_account">
                     <input type="checkbox" id="f-option" name="selector">
                     <label for="f-option">Remember me</label>
                 </div>
-                <a class="lost_pass" href="#">Lost your password?</a>
+                <a class="lost_pass" href="#">¿Olvidaste tu contraseña?</a>
             </div>
         </form>
     </div>
     @endguest
-    <div class="cupon_area">
-        <div class="check_title">
-            <h2>Have a coupon? <a href="#">Click here to enter your code</a></h2>
-        </div>
-        <input type="text" placeholder="Enter coupon code">
-        <a class="button button-coupon" href="#">Apply Coupon</a>
-    </div>
     <div class="billing_details">
         <div class="row">
             <div class="col-lg-8">
-                <h3>Billing Details</h3>
+                <h3>Detalles de facturación (solo emisión de boletas)</h3>
                 <form class="row contact_form" action="#" method="post" novalidate="novalidate">
                     <div class="col-md-6 form-group p_star">
-                        <input type="text" class="form-control" id="first" name="name">
-                        <span class="placeholder" data-placeholder="First name"></span>
+                        <input type="text" class="form-control" id="first" name="name" placeholder="Nombre / Empresa">
                     </div>
                     <div class="col-md-6 form-group p_star">
-                        <input type="text" class="form-control" id="last" name="name">
-                        <span class="placeholder" data-placeholder="Last name"></span>
+                        <input type="text" class="form-control" id="last" name="name" placeholder="DNI / RUC">
                     </div>
                     <div class="col-md-12 form-group">
-                        <input type="text" class="form-control" id="company" name="company" placeholder="Company name">
+                        <input type="text" class="form-control" id="company" name="company" placeholder="Dirección">
+                    </div>
+                    <div class="col-md-12 form-group">
+                        <input type="text" class="form-control" id="number" name="number" placeholder="Referencia">
                     </div>
                     <div class="col-md-6 form-group p_star">
-                        <input type="text" class="form-control" id="number" name="number">
-                        <span class="placeholder" data-placeholder="Phone number"></span>
+                        <input type="text" class="form-control" id="email" name="compemailany" placeholder="Teléfono">
                     </div>
                     <div class="col-md-6 form-group p_star">
-                        <input type="text" class="form-control" id="email" name="compemailany">
-                        <span class="placeholder" data-placeholder="Email Address"></span>
-                    </div>
-                    <div class="col-md-12 form-group p_star">
-                        <select class="country_select">
-                            <option value="1">Country</option>
-                            <option value="2">Country</option>
-                            <option value="4">Country</option>
-                        </select>
-                    </div>
-                    <div class="col-md-12 form-group p_star">
-                        <input type="text" class="form-control" id="add1" name="add1">
-                        <span class="placeholder" data-placeholder="Address line 01"></span>
-                    </div>
-                    <div class="col-md-12 form-group p_star">
-                        <input type="text" class="form-control" id="add2" name="add2">
-                        <span class="placeholder" data-placeholder="Address line 02"></span>
-                    </div>
-                    <div class="col-md-12 form-group p_star">
-                        <input type="text" class="form-control" id="city" name="city">
-                        <span class="placeholder" data-placeholder="Town/City"></span>
-                    </div>
-                    <div class="col-md-12 form-group p_star">
-                        <select class="country_select">
-                            <option value="1">District</option>
-                            <option value="2">District</option>
-                            <option value="4">District</option>
-                        </select>
-                    </div>
-                    <div class="col-md-12 form-group">
-                        <input type="text" class="form-control" id="zip" name="zip" placeholder="Postcode/ZIP">
-                    </div>
-                    <div class="col-md-12 form-group">
-                        <div class="creat_account">
-                            <input type="checkbox" id="f-option2" name="selector">
-                            <label for="f-option2">Create an account?</label>
-                        </div>
+                        <input type="text" class="form-control" id="email" name="compemailany" placeholder="Correo electrónico">
                     </div>
                     <div class="col-md-12 form-group mb-0">
                         <div class="creat_account">
-                            <h3>Shipping Details</h3>
+                            <h3>Detalles del envío</h3>
                             <input type="checkbox" id="f-option3" name="selector">
-                            <label for="f-option3">Ship to a different address?</label>
+                            <label for="f-option3">¿Enviar a una dirección diferente?</label>
                         </div>
-                        <textarea class="form-control" name="message" id="message" rows="1" placeholder="Order Notes"></textarea>
+                        <textarea class="form-control" name="message" id="message" rows="1" placeholder="Ingrese la nueva dirección o incluya información adicional importante"></textarea>
                     </div>
                 </form>
             </div>

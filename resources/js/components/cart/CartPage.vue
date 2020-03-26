@@ -54,25 +54,28 @@
 						<td>
 							<div class="shipping_box">
 								<ul class="list">
-									<li><a href="javascript:void(0)">Envío gratis</a></li>
-									<li><a href="javascript:void(0)">Recojo en tienda</a></li>
-									<li class="active" v-if="lima" @click="lima = true; olva = false"><a href="javascript:void(0)">Lima Metropolitana</a></li>
-									<li v-else @click="lima = true; olva = false"><a href="javascript:void(0)">Lima Metropolitana</a></li>
-									<li class="active" v-if="olva" @click="olva=true; lima = false"><a href="javascript:void(0)">Olva Courier: S/15.00</a></li>
-									<li v-else @click="olva=true; lima = false"><a href="javascript:void(0)">Olva Courier: S/15.00</a></li>
-									<li><a href="javascript:void(0)">Agencia de transporte: S/15.00</a></li>
+									<li 
+										:class="{active: isActive}" 
+										v-for="shipping in shippingMethods" 
+										:key="shipping.id" 
+										@click="selectShippingMethod(shipping)"
+									>
+										<a href="javascript:void(0)">{{shipping.name}}</a>
+									</li>
 								</ul>
 								<h6>Calcular envío <i class="fa fa-caret-down" aria-hidden="true"></i></h6>
-								<select class="shipping_select" v-if="lima">
+
+								<select class="shipping_select">
 									<option value="1">Lince</option>
 									<option value="2">Pueblo libre</option>
 									<option value="4">Magdalena del Mar</option>
 								</select>
-								<select class="shipping_select" v-if="olva">
+								<select class="shipping_select">
 									<option value="1">La libertad</option>
 									<option value="2">Cajamarca</option>
 									<option value="4">Piura</option>
 								</select>
+
 								<input type="text" placeholder="Postcode/Zipcode">
 								<a class="gray_btn" href="javascript:void(0)">Actualizar</a>
 							</div>
@@ -87,7 +90,7 @@
 						</td>
 						<td>
 							<div class="checkout_btn_inner d-flex align-items-center">
-								<a class="gray_btn" href="javascript:void(0)">Seguir comprando</a>
+								<a class="gray_btn" href="/tienda">Seguir comprando</a>
 								<a class="primary-btn ml-2" href="/checkout">Proceder a Pagar</a>
 							</div>
 						</td>
@@ -100,21 +103,30 @@
 
 <script>
 	import Card from './Card'
-	import {mapState, mapGetters, mapMutations} from 'vuex'
+	import {mapState, mapGetters, mapMutations, mapActions} from 'vuex'
 	export default {
+		mounted(){
+			this.fetchShippingMethods()
+		},
 		data(){
 			return {
-				lima: false,
-				olva: false,
-				selected: true
+				isActive: false,
 			}
 		},
 		components: {
 			Card
 		},
+		methods: {
+			...mapActions('shipping', ['fetchShippingMethods']),
+			...mapMutations('shipping', ['setShipping']),
+			selectShippingMethod(shipping){
+				this.setShipping(shipping)
+			}
+		},
 		computed: {
 			...mapGetters('cart', ['totalCost']),
-			...mapState('cart', ['cart'])
+			...mapState('cart', ['cart']),
+			...mapState('shipping', ['shippingMethods', 'selectedShippingMethod'])
 		}
 	}
 </script>
