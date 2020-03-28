@@ -79,5 +79,7 @@ class DatabaseSeeder extends Seeder {
 		factory(\App\PaymentMethod::class, 1)->create([
 			'name' => 'Paypal',
 		]);
+
+		factory(\App\Coupon::class, 10)->create();
 	}
 }

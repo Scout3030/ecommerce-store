@@ -22,6 +22,9 @@ Route::apiResource('color', 'ColorController');
 Route::apiResource('product', 'ProductController');
 Route::apiResource('shipping', 'ShippingController');
 Route::apiResource('payment-method', 'PaymentMethodController');
+Route::apiResource('email-subscription', 'EmailSubscriptionController');
+
+Route::post('coupon', 'CouponController@getCoupon');
 
 Route::group(['prefix' => 'product'], function () {
 	Route::get('/best-seller/product', 'ProductController@bestSeller');

@@ -5,6 +5,6 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 class Shipping extends Model {
-	const ACTIVE = 1;
-	const INACTIVE = 2;
+	const PUBLISHED = 1;
+	const UNPUBLISHED = 2;
 }

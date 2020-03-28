@@ -7,6 +7,7 @@ import filter from './../modules/filter'
 import cart from './../modules/cart'
 import shipping from './../modules/shipping'
 import paymentmethod from './../modules/paymentmethod'
+import coupon from './../modules/coupon'
 
 import VuexPersistence from 'vuex-persist'
 
@@ -31,7 +32,8 @@ export default new Vuex.Store({
     filter,
     cart,
     shipping,
-    paymentmethod
+    paymentmethod,
+    coupon
   },
   plugins: [vuexLocal.plugin]
 })

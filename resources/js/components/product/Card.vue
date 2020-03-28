@@ -10,7 +10,7 @@
 			</div>
 			<div class="card-body">
 				<p>{{product.category.name}}</p>
-				<h4 class="card-product__title"><a :href="getProductUrl(product.slug)" target="_BLANK">{{product.name}}</a></h4>
+				<h4 class="card-product__title"><a :href="$getProductUrl(product.slug)" target="_BLANK">{{product.name}}</a></h4>
 				<p class="card-product__price">S/{{product.price}}</p>
 			</div>
 		</div>

@@ -4,7 +4,7 @@
 		<td>
 			<div class="media">
 				<div class="d-flex">
-					<img :src="$getImageUrl(product.picture)" alt="" height="150px">
+					<img :src="$getImageUrl('products', product.picture)" alt="" height="150px">
 				</div>
 				<div class="media-body">
 					<p>{{product.name}}</p>

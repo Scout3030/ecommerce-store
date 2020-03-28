@@ -19,8 +19,9 @@ Vue.component('colors-filter', require('./components/filter/Color.vue').default)
 Vue.component('cart-component', require('./components/cart/Cart.vue').default);
 Vue.component('cart-page', require('./components/cart/CartPage.vue').default);
 Vue.component('home-best-seller', require('./components/home/BestSeller.vue').default);
-Vue.component('payment-card', require('./components/checkout/PaymentCard.vue').default);
+Vue.component('billing-component', require('./components/checkout/Billing.vue').default);
 Vue.component('product-detail', require('./components/product/Detail.vue').default);
+Vue.component('newsletter-component', require('./components/template/Newsletter.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

@@ -39,6 +39,7 @@ Route::get('/contacto', function () {
 })->name('contact');
 
 Route::get('/checkout', function () {
+	session(['checkout' => true]);
 	return view('checkout');
 })->name('checkout');
 

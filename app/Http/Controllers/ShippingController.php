@@ -12,7 +12,7 @@ class ShippingController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function index() {
-		$shippingMethods = Shipping::whereStatus(Shipping::ACTIVE)->get();
+		$shippingMethods = Shipping::whereStatus(Shipping::UNPUBLISHED)->get();
 		return response()->json($shippingMethods);
 	}
 
