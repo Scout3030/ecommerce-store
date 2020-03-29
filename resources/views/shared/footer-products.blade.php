@@ -1,29 +1,15 @@
-@for($j=1; $j < (count($products)/3 + 1); $j++)
+@foreach ($products->chunk(3) as $chunk)
   <div class="col-sm-6 col-xl-3 mb-4 mb-xl-0">
-    @if(count($products)/($j*3) >= 1)
     <div class="single-search-product-wrapper">
-      @for($i = ($j*3) - 3; $i < $j*3; $i++)
+      @foreach ($chunk as $product)
       <div class="single-search-product d-flex">
-        <a href="{{route('product.show', $products[$i]->slug)}}" target="_BLANK"><img src="{{$products[$i]->pathAttachment()}}" alt=""></a>
+        <a href="{{route('product.show', $product->slug)}}" target="_BLANK"><img src="{{$product->pathAttachment()}}" alt=""></a>
         <div class="desc">
-          <a href="{{route('product.show', $products[$i]->slug)}}" class="title" target="_BLANK">{{$products[$i]->name}}</a>
-          <div class="price">S/{{$products[$i]->price}}</div>
+          <a href="{{route('product.show', $product->slug)}}" class="title" target="_BLANK">{{$product->name}}</a>
+          <div class="price">S/{{$product->price}}</div>
         </div>
       </div>
-      @endfor
+      @endforeach
     </div>
-    @else
-    <div class="single-search-product-wrapper">
-      @for($i = ($j*3) - 3; $i < count($products); $i++)
-      <div class="single-search-product d-flex">
-        <a href="{{route('product.show', $products[$i]->slug)}}" target="_BLANK"><img src="{{$products[$i]->pathAttachment()}}" alt=""></a>
-        <div class="desc">
-          <a href="{{route('product.show', $products[$i]->slug)}}" class="title" target="_BLANK">{{$products[$i]->name}}</a>
-          <div class="price">S/{{$products[$i]->price}}</div>
-        </div>
-      </div>
-      @endfor
-    </div>
-    @endif
   </div>
-  @endfor
+@endforeach

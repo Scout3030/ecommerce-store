@@ -40,7 +40,6 @@
         return `/images/products/${attachment}`
       },
       addToCart(product){
-        console.log(product)
         this.addProduct(product)
       },
       redirectToProduct(product){

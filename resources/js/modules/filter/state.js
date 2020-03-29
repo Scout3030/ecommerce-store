@@ -1,5 +1,6 @@
 export default {
 	selectedCategory: null,
 	selectedColor: null,
-	selectedQuery: null
+	selectedWord: '',
+	selectedUrl: '/api/search' 
 }

@@ -5,6 +5,11 @@
 			<li class="common-filter">
 				<form action="#">
 					<ul>
+						<li class="filter-list">
+							<input class="pixel-radio" type="radio" name="category_id" @click="getCategory(null)" checked>
+							<label>Todas las categorías
+							</label>
+						</li>
 						<li class="filter-list" v-for="category in categories">
 							<input class="pixel-radio" type="radio" :value="category.id" name="category_id" @click="getCategory(category.id)">
 							<label>{{category.name | capitalize}}
@@ -32,16 +37,16 @@
         methods: {
         	...mapActions('category', ['fetchCategories']),
         	...mapActions('product', ['searchProducts']),
-        	...mapMutations('filter', ['setCategory']),
-		      getCategory(id){
+        	...mapMutations('filter', ['setCategory', 'setUrl']),
+		    getCategory(id){
 		        this.setCategory(id)
-        		this.searchProducts( [this.selectedQuery, this.selectedCategory, this.selectedColor])
-		      }
+		        this.setUrl([this.selectedCategory, this.selectedColor, this.selectedWord])
+		    }
         },
         computed: {
         	...mapState('category', ['categories']),
         	...mapState('product', ['products']),
-        	...mapState('filter', ['selectedCategory', 'selectedColor', 'selectedQuery']),
+        	...mapState('filter', ['selectedCategory', 'selectedColor', 'selectedWord']),
         },
 		filters: {
 			capitalize: function (value) {

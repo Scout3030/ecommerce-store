@@ -10,21 +10,14 @@
 <div class="container">
   <div class="row">
     <div class="col-xl-3 col-lg-4 col-md-5">
+
       <categories-filter></categories-filter>
       <colors-filter></colors-filter>
-    </div>
-    <div class="col-xl-9 col-lg-8 col-md-7">
-      <!-- Start Filter Bar -->
-      <searcher-component></searcher-component>
-      <!-- End Filter Bar -->
-      <!-- Start Best Seller -->
-      <section class="lattest-product-area pb-40 category-list">
 
-        <filter-component></filter-component>
-
-      </section>
-      <!-- End Best Seller -->
     </div>
+
+    <filter-component></filter-component>
+
   </div>
 </div>
 </section>

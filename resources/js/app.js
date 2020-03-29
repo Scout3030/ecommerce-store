@@ -13,7 +13,6 @@ require('./plugins')
 Vue.config.productionTip = false
 
 Vue.component('filter-component', require('./components/filter/Filter.vue').default);
-Vue.component('searcher-component', require('./components/filter/Searcher.vue').default);
 Vue.component('categories-filter', require('./components/filter/Category.vue').default);
 Vue.component('colors-filter', require('./components/filter/Color.vue').default);
 Vue.component('cart-component', require('./components/cart/Cart.vue').default);

@@ -17,41 +17,7 @@ export async function fetchProducts ({commit}){
 }
 
 
-export async function searchProducts ({commit}, [query, category, color]){
-	
-	let url
-
-	if (query == null && category == null && color == null) {
-		url = `/api/product/`
-	}
-
-	if (query != null && category == null && color == null) {
-		url = `/api/product/search/${query}`
-	}
-
-	if (query != null && category != null && color == null) {
-		url = `/api/product/search/${query}/${category}`
-	}
-
-	if (query != null && category != null && color != null) {
-		url = `/api/product/search/${query}/${category}/${color}`
-	}
-
-	if (query == null && category != null && color != null) {
-		url = `/api/product/search/all/${category}/${color}`
-	}
-
-	if (query == null && category == null && color != null) {
-		url = `/api/product/search/all/all/${color}`
-	}
-
-	if (query == null && category != null && color == null) {
-		url = `/api/product/search/all/${category}`
-	}
-
-	if (query != null && category == null && color != null) {
-		url = `/api/product/search/${query}/all/${color}`
-	}
+export async function searchProducts ({commit}, url){
 
 	try {
 		const {data} = await Vue.axios({
@@ -72,7 +38,7 @@ export async function fetchBestSellers ({commit}){
 	
 	try {
 		const {data} = await Vue.axios({
-			url: '/api/product/best-seller/product'
+			url: '/api/best-seller'
 		})
 		commit('product/setProducts', data, {root: true})
 	} catch(e) {

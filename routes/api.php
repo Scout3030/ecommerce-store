@@ -26,7 +26,5 @@ Route::apiResource('email-subscription', 'EmailSubscriptionController');
 
 Route::post('coupon', 'CouponController@getCoupon');
 
-Route::group(['prefix' => 'product'], function () {
-	Route::get('/best-seller/product', 'ProductController@bestSeller');
-	Route::get('/search/{query}/{category?}/{color?}', 'ProductController@showProducts');
-});
+Route::get('search', 'ProductController@searchProducts');
+Route::get('best-seller', 'ProductController@bestSeller');

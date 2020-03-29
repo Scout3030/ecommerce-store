@@ -56,76 +56,37 @@ class ProductController extends Controller {
 	 * @param  \App\Product  $product
 	 * @return \Illuminate\Http\Response
 	 */
-	public function showProducts($query = 'all', $category = 'all', $color = 'all') {
+	public function searchProducts(Request $request) {
 
-		if ($query == 'all' && $category == 'all' && $color == 'all') {
+		$products = Product::with(['category'])
+			->get();
 
-			$products = Product::with(['category'])->get();
+		if ($request->has('word')) {
+			$this->word = $request->word;
+			$products = $products->filter(function ($value, $key) {
+				return strpos($value->name, $this->word) ||
+				strpos($value->long_description, $this->word) ||
+				strpos($value->short_description, $this->word);
+			});
 		}
 
-		if ($query != 'all' && $category == 'all' && $color == 'all') {
-
-			$products = Product::with(['category'])
-				->where('name', 'like', '%' . $query . '%')
-				->orWhere('description', 'like', '%' . $query . '%')
-				->get();
+		if ($request->has('color')) {
+			$this->color = $request->color;
+			$products = $products->filter(function ($value, $key) {
+				return $value->color_id == $this->color;
+			});
 		}
 
-		if ($query != 'all' && $category != 'all' && $color == 'all') {
-			$products = Product::with(['category'])
-				->where([['category_id', '=', $category], ['name', 'like', '%' . $query . '%']])
-				->orWhere([['category_id', '=', $category], ['description', 'like', '%' . $query . '%']])
-				->get();
+		if ($request->has('category')) {
+			$this->category = $request->category;
+			$products = $products->filter(function ($value, $key) {
+				return $value->category_id == $this->category;
+			});
 		}
 
-		if ($query != 'all' && $category != 'all' && $color != 'all') {
-			$products = Product::with(['category'])
-				->where([
-					['category_id', '=', $category],
-					['color_id', '=', $color],
-					['name', 'like', '%' . $query . '%'],
-				])
-				->orWhere([
-					['category_id', '=', $category],
-					['color_id', '=', $color],
-					['description', 'like', '%' . $query . '%'],
-				])
-				->get();
-		}
+		$ids = $products->modelKeys();
 
-		if ($query == 'all' && $category != 'all' && $color != 'all') {
-			$products = Product::with(['category'])
-				->where([
-					['category_id', '=', $category],
-					['color_id', '=', $color],
-				])
-				->get();
-		}
-
-		if ($query == 'all' && $category == 'all' && $color != 'all') {
-			$products = Product::with(['category'])
-				->whereColorId($color)
-				->get();
-		}
-
-		if ($query == 'all' && $category != 'all' && $color == 'all') {
-			$products = Product::with(['category'])
-				->whereCategoryId($category)
-				->get();
-		}
-
-		if ($query != 'all' && $category == 'all' && $color != 'all') {
-			$products = Product::with(['category'])
-				->where([
-					['color_id', '=', $color],
-					['name', 'like', '%' . $query . '%'],
-				])
-				->orWhere([
-					['color_id', '=', $color],
-					['description', 'like', '%' . $query . '%'],
-				])
-				->get();
-		}
+		$products = Product::whereIn('id', $ids)->paginate(6);
 
 		return response()->json($products);
 	}
@@ -145,8 +106,6 @@ class ProductController extends Controller {
 		])->get();
 
 		$related = $product->relatedProducts();
-
-		// dd($product);
 
 		return view('product.show', compact('product', 'related'));
 	}
