@@ -26,7 +26,7 @@
 
     <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
 
-    <!-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     @stack('styles')
 </head>
 <body>

@@ -16,63 +16,42 @@ class ColorController extends Controller {
 		return response()->json($colors);
 	}
 
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return \Illuminate\Http\Response
-	 */
+	public function adminIndex() {
+		return view('admin.color.index');
+	}
+
 	public function create() {
-		//
+		$color = new Color;
+		$text = 'Crear color';
+		return view('admin.color.create', compact('color', 'text'));
 	}
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @param  \Illuminate\Http\Request  $request
-	 * @return \Illuminate\Http\Response
-	 */
 	public function store(Request $request) {
-		//
+		$color = Category::create($request->input());
+		return back()->with(['message' => 'Color creado correctamente', 'description' => 'Has creado una nuevo color, puedes editarlo en cualquier momento.']);
 	}
 
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return \Illuminate\Http\Response
-	 */
-	public function show($id) {
-		//
+	public function edit(Color $color) {
+		$text = 'Actualizar color';
+		return view('admin.color.create', compact('color', 'text'));
 	}
 
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return \Illuminate\Http\Response
-	 */
-	public function edit($id) {
-		//
+	public function update(Request $request, Color $color) {
+		$color->fill($request->input())->save();
+		return back()->with(['message' => 'Color actualizado correctamente']);
 	}
 
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  \Illuminate\Http\Request  $request
-	 * @param  int  $id
-	 * @return \Illuminate\Http\Response
-	 */
-	public function update(Request $request, $id) {
-		//
+	public function destroy(Color $color) {
+		$color->delete();
+		return back()->with(['message' => 'Color eliminado correctamente']);
 	}
 
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return \Illuminate\Http\Response
-	 */
-	public function destroy($id) {
-		//
+	public function datatable() {
+		$colors = Color::get();
+		$actions = 'admin.color.datatable.actions';
+		return datatables()->of($colors)
+			->addColumn('actions', $actions)
+			->rawColumns(['actions'])
+			->toJson();
 	}
 }

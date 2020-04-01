@@ -7,12 +7,13 @@ use App\Product;
 use App\Review;
 use App\Sell;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model {
 
-	// protected $fillable = ['teacher_id', 'name', 'description', 'picture', 'level_id', 'category_id', 'status'];
+	use SoftDeletes;
 
-	// protected $withCount = ['reviews', 'buyers'];
+	protected $fillable = ['name', 'category_id', 'color_id', 'short_description', 'long_description', 'picture', 'keywords', 'cost', 'price', 'stock'];
 
 	protected static function boot() {
 		parent::boot();

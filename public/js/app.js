@@ -2371,22 +2371,39 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      payment: null
+      payment: null,
+      csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
     };
   },
   mounted: function mounted() {
     this.fetchPaymentMethods();
+    this.convertCart();
   },
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])('paymentmethod', ['fetchPaymentMethods']), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapMutations"])('paymentmethod', ['setPaymentmethod']), {
-    selectPaymentmethod: function selectPaymentmethod(paymentMethod) {
-      this.setPaymentmethod(paymentMethod);
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])('paymentmethod', ['fetchPaymentMethods']), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapMutations"])('paymentmethod', ['setPaymentMethod']), {
+    selectPaymentMethod: function selectPaymentMethod(paymentMethod) {
+      this.setPaymentMethod(paymentMethod);
+    },
+    sendData: function sendData() {
+      console.log('Send data');
+    },
+    convertCart: function convertCart() {
+      var map = this.cart.map(function (obj) {
+        return [obj.id, obj.qty];
+      });
+      return map;
     }
   }),
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])('cart', ['cart']), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('cart', ['totalCost']), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])('paymentmethod', ['paymentMethods']), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])('shipping', ['shippingCost']))
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])('cart', ['cart']), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('cart', ['totalCost']), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])('paymentmethod', ['paymentMethod', 'paymentMethods']), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])('shipping', ['selectedSHippingMethod', 'shippingCost']))
 });
 
 /***/ }),
@@ -24218,14 +24235,36 @@ var render = function() {
         }),
         _vm._v(" "),
         _c("div", { staticClass: "text-center" }, [
-          _c(
-            "a",
-            {
-              staticClass: "button button-paypal",
-              attrs: { href: "javascript:void(0)" }
-            },
-            [_vm._v("Pagar con " + _vm._s(_vm.payment))]
-          )
+          _c("form", { attrs: { action: "/sells", method: "POST" } }, [
+            _c("input", {
+              attrs: { type: "hidden", name: "_token" },
+              domProps: { value: _vm.csrf }
+            }),
+            _vm._v(" "),
+            _c("input", {
+              attrs: { type: "hidden", name: "cart" },
+              domProps: { value: _vm.convertCart() }
+            }),
+            _vm._v(" "),
+            _c("input", {
+              attrs: { type: "hidden", name: "shipping_id" },
+              domProps: { value: 1 }
+            }),
+            _vm._v(" "),
+            _c("input", {
+              attrs: { type: "hidden", name: "payment_method_id" },
+              domProps: { value: _vm.paymentMethod.id }
+            }),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "button button-paypal",
+                attrs: { type: "submit" }
+              },
+              [_vm._v("Pagar con " + _vm._s(_vm.payment))]
+            )
+          ])
         ])
       ],
       2
@@ -42304,7 +42343,9 @@ function categoriesError(state, payload) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   paymentMethods: [],
-  paymentMethod: null
+  paymentMethod: {
+    id: null
+  }
 });
 
 /***/ }),
@@ -42685,8 +42726,10 @@ function shippingsError(state, payload) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   shippingMethods: [],
-  selectedSHippingMethod: null,
-  shippingCost: 10
+  selectedSHippingMethod: {
+    id: null
+  },
+  shippingCost: 1
 });
 
 /***/ }),

@@ -17,6 +17,7 @@ class CreateCategoriesTable extends Migration {
 			$table->string('slug');
 			$table->string('picture');
 			$table->timestamps();
+			$table->softDeletes();
 		});
 	}
 

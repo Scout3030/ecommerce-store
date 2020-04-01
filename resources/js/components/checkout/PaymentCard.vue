@@ -25,7 +25,13 @@
             </div>
             
             <div class="text-center">
-              <a class="button button-paypal" href="javascript:void(0)">Pagar con {{payment}}</a>
+                <form action="/sells" method="POST">
+                    <input type="hidden" name="_token" :value="csrf">
+                    <input type="hidden" name="cart" :value="convertCart()">
+                    <input type="hidden" name="shipping_id" :value="1">
+                    <input type="hidden" name="payment_method_id" :value="paymentMethod.id">
+                    <button type="submit" class="button button-paypal">Pagar con {{payment}}</button>
+                </form>
             </div>
         </div>
     </div>
@@ -36,24 +42,35 @@
 	export default {
 		data(){
 			return {
-				payment: null
+				payment: null,
+                csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
 			}
 		},
         mounted(){
             this.fetchPaymentMethods()
+            this.convertCart()
         },
         methods:{
             ...mapActions('paymentmethod', ['fetchPaymentMethods']),
-            ...mapMutations('paymentmethod', ['setPaymentmethod']),
-            selectPaymentmethod(paymentMethod){
-                this.setPaymentmethod(paymentMethod)
+            ...mapMutations('paymentmethod', ['setPaymentMethod']),
+            selectPaymentMethod(paymentMethod){
+                this.setPaymentMethod(paymentMethod)
+            },
+            sendData(){
+                console.log('Send data')
+            },
+            convertCart(){
+                var map = this.cart.map(function(obj){
+                    return [obj.id, obj.qty]
+                })
+                return map
             }
         },
 		computed:{
 			...mapState('cart', ['cart']),
 			...mapGetters('cart', ['totalCost']),
-            ...mapState('paymentmethod', ['paymentMethods']),
-            ...mapState('shipping', ['shippingCost'])
+            ...mapState('paymentmethod', ['paymentMethod', 'paymentMethods']),
+            ...mapState('shipping', ['selectedSHippingMethod', 'shippingCost'])
 		}
 	}
 </script>

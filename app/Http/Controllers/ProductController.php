@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\Color;
+use App\Helpers\Helper;
 use App\Product;
 use App\Review;
 use Illuminate\Http\Request;
@@ -32,12 +33,23 @@ class ProductController extends Controller {
 	}
 
 	/**
+	 * Display a listing of the resource.
+	 *
+	 * @return \Illuminate\Http\Response
+	 */
+	public function adminIndex() {
+		return view('admin.product.index');
+	}
+
+	/**
 	 * Show the form for creating a new resource.
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
 	public function create() {
-		//
+		$product = new Product;
+		$btnText = 'Crear producto';
+		return view('admin.product.create', compact('product', 'btnText'));
 	}
 
 	/**
@@ -47,7 +59,10 @@ class ProductController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function store(Request $request) {
-		//
+		$pictures = Helper::uploadFile('picture', 'products');
+		$request->merge(['picture' => $pictures]);
+		$product = Product::create($request->input());
+		return back()->with(['message' => 'Producto creado correctamente', 'description' => 'Has creado un nuevo producto, puedes editarlo en cualquier momento.']);
 	}
 
 	/**
@@ -117,7 +132,8 @@ class ProductController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function edit(Product $product) {
-		//
+		$btnText = 'Actualizar producto';
+		return view('admin.product.create', compact('product', 'btnText'));
 	}
 
 	/**
@@ -128,7 +144,13 @@ class ProductController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function update(Request $request, Product $product) {
-		//
+		if ($request->hasFile('picture')) {
+			\Storage::delete('courses/' . $course->picture);
+			$picture = Helper::uploadFile("picture", 'courses');
+			$request->merge(['picture' => $picture]);
+		}
+		$product->fill($request->input())->save();
+		return back()->with(['message' => 'Producto actualizado correctamente']);
 	}
 
 	/**
@@ -138,7 +160,8 @@ class ProductController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function destroy(Product $product) {
-		//
+		$product->delete();
+		return back()->with(['message' => 'Proucto eliminado correctamente']);
 	}
 
 	public function addReview() {
@@ -156,5 +179,16 @@ class ProductController extends Controller {
 		$products = Product::with(['category'])->limit(12)->get();
 		// dd($products);
 		return response()->json($products);
+	}
+
+	public function datatable() {
+		$products = Product::get();
+		$actions = 'admin.product.datatable.actions';
+		return datatables()->of($products)
+			->editColumn('cost', 'S/ {{$cost}}')
+			->editColumn('price', 'S/ {{$price}}')
+			->addColumn('actions', $actions)
+			->rawColumns(['actions'])
+			->toJson();
 	}
 }

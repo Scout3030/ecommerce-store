@@ -5,8 +5,13 @@ namespace App;
 use App\Category;
 use App\Product;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Category extends Model {
+
+	use SoftDeletes;
+
+	protected $fillable = ['name', 'picture'];
 
 	protected static function boot() {
 		parent::boot();

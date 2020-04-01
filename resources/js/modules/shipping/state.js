@@ -1,5 +1,7 @@
 export default {
 	shippingMethods: [],
-	selectedSHippingMethod: null,
-	shippingCost: 10
+	selectedSHippingMethod: {
+		id: null
+	},
+	shippingCost: 1
 }

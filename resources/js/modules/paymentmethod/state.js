@@ -1,4 +1,6 @@
 export default {
 	paymentMethods: [],
-	paymentMethod: null
+	paymentMethod: {
+		id: null
+	}
 }
