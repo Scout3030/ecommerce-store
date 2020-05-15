@@ -2215,38 +2215,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.olva = false;
         this.agency = false;
       }
-
-      if (this.selectedShippingMethod.id == 2) {
-        this.free = false;
-        this.store = true;
-        this.lima = false;
-        this.olva = false;
-        this.agency = false;
-      }
-
-      if (this.selectedShippingMethod.id == 3) {
-        this.free = false;
-        this.store = false;
-        this.lima = true;
-        this.olva = false;
-        this.agency = false;
-      }
-
-      if (this.selectedShippingMethod.id == 4) {
-        this.free = false;
-        this.store = false;
-        this.lima = false;
-        this.olva = true;
-        this.agency = false;
-      }
-
-      if (this.selectedShippingMethod.id == 5) {
-        this.free = false;
-        this.store = false;
-        this.lima = false;
-        this.olva = false;
-        this.agency = true;
-      }
     },
     applyCoupon: function applyCoupon() {
       var _this = this;

@@ -46,9 +46,9 @@ class DatabaseSeeder extends Seeder {
 		factory(\App\Product::class, 50)->create();
 
 		factory(\App\Template::class, 1)->create([
-			'email' => 'contact@mail.com',
-			'address' => 'My address',
-			'phone' => '+51 987-644223',
+			'email' => 'pedidos@huamachucostore.com',
+			'address' => 'Jr. Leoncio Prado 570, Huamachuco',
+			'phone' => '+51 969-449655',
 		]);
 
 		factory(\App\Shipping::class, 1)->create([

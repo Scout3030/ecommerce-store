@@ -6,42 +6,42 @@
 		<div class="row">
 			<div class="col-sm-6 col-lg-4 mb-4 mb-lg-0">
 				<div class="categories_post">
-					<img class="card-img rounded-0" src="{{asset('assets/img/blog/cat-post/cat-post-3.jpg')}}" alt="post">
+					<img class="card-img rounded-0" src="{{asset('assets/img/services/desktop-design.jpg')}}" alt="post">
 					<div class="categories_details">
 						<div class="categories_text">
 							<a href="single-blog.html">
-								<h5>Social Life</h5>
+								<h5>Aplicaciones de escritorio</h5>
 							</a>
 							<div class="border_line"></div>
-							<p>Enjoy your social life together</p>
+							<p>Sistemas de ventas</p>
 						</div>
 					</div>
 				</div>
 			</div>
 			<div class="col-sm-6 col-lg-4 mb-4 mb-lg-0">
 				<div class="categories_post">
-					<img class="card-img rounded-0" src="{{asset('assets/img/blog/cat-post/cat-post-2.jpg')}}" alt="post">
+					<img class="card-img rounded-0" src="{{asset('assets/img/services/web-design.jpg')}}" alt="post">
 					<div class="categories_details">
 						<div class="categories_text">
 							<a href="single-blog.html">
-								<h5>Politics</h5>
+								<h5>Aplicaciones web</h5>
 							</a>
 							<div class="border_line"></div>
-							<p>Be a part of politics</p>
+							<p>Sistemas de reserva de hoteles</p>
 						</div>
 					</div>
 				</div>
 			</div>
 			<div class="col-sm-6 col-lg-4 mb-4 mb-lg-0">
 				<div class="categories_post">
-					<img class="card-img rounded-0" src="{{asset('assets/img/blog/cat-post/cat-post-1.jpg')}}" alt="post">
+					<img class="card-img rounded-0" src="{{asset('assets/img/services/digital-marketing.jpg')}}" alt="post">
 					<div class="categories_details">
 						<div class="categories_text">
 							<a href="single-blog.html">
-								<h5>Food</h5>
+								<h5>Marketing digital</h5>
 							</a>
 							<div class="border_line"></div>
-							<p>Let the food be finished</p>
+							<p>Publicidad digital</p>
 						</div>
 					</div>
 				</div>
@@ -59,30 +59,30 @@
 					<article class="row blog_item">
 						<div class="col-md-3">
 							<div class="blog_info text-right">
-								<div class="post_tag">
-									<a href="#">Food,</a>
-									<a class="active" href="#">Technology,</a>
-									<a href="#">Politics,</a>
-									<a href="#">Lifestyle</a>
-								</div>
+
 								<ul class="blog_meta list">
 									<li>
-										<a href="#">Mark wiens
+										<a href="javascript:void(0)">3 años de experiencia
+											<i class="lnr lnr-bubble"></i>
+										</a>
+									</li>
+									<li>
+										<a href="javascript:void(0)">Aplicaciones de escritorio
 											<i class="lnr lnr-user"></i>
 										</a>
 									</li>
 									<li>
-										<a href="#">12 Dec, 2017
+										<a href="javascript:void(0)">Aplicaciones web
 											<i class="lnr lnr-calendar-full"></i>
 										</a>
 									</li>
 									<li>
-										<a href="#">1.2M Views
+										<a href="javascript:void(0)">Aplicaciones móviles
 											<i class="lnr lnr-eye"></i>
 										</a>
 									</li>
 									<li>
-										<a href="#">06 Comments
+										<a href="javascript:void(0)">Diseño gráfico
 											<i class="lnr lnr-bubble"></i>
 										</a>
 									</li>
@@ -91,15 +91,14 @@
 						</div>
 						<div class="col-md-9">
 							<div class="blog_post">
-								<img src="{{asset('assets/img/blog/main-blog/m-blog-1.jpg')}}" alt="">
+								<img src="{{asset('assets/img/template/logo.jpg')}}" alt="">
 								<div class="blog_details">
 									<a href="single-blog.html">
-										<h2>Astronomy Binoculars A Great Alternative</h2>
+										<h2>Somos Huamachuco Digital</h2>
 									</a>
-									<p>MCSE boot camps have its supporters and its detractors. Some people do not understand
-										why you should have to spend money on boot camp when you can get the MCSE study
-									materials yourself at a fraction.</p>
-									<a class="button button-blog" href="single-blog.html">View More</a>
+									<p>Una empresa huamachuquina con más de 3 años de experiencia en proyectos digitales.</p>
+									<p>Digitalizando Huamachuco...</p>
+									<a class="button button-blog" href="https://wa.me/51969449655" target="_blank">Contactar</a>
 								</div>
 							</div>
 						</div>

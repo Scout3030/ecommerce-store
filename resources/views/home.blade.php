@@ -13,9 +13,9 @@
         </div>
         <div class="col-sm-7 col-lg-6 offset-lg-1 pl-4 pl-md-5 pl-lg-0">
           <div class="hero-banner__content">
-            <h4>Shop is fun</h4>
-            <h1>Browse Our Premium Product</h1>
-            <p>Us which over of signs divide dominion deep fill bring they're meat beho upon own earth without morning over third. Their male dry. They are great appear whose land fly grass.</p>
+            <h4>Bienvenidos a</h4>
+            <h1>Huamachuco Compras</h1>
+            <p>La manera más simple de comprar desde casa.</p>
             <a class="button button-hero" href="{{route('product.index')}}">Ver productos</a>
           </div>
         </div>
@@ -59,9 +59,9 @@
       <div class="row">
         <div class="col-xl-5">
           <div class="offer__content text-center">
-            <h3>Hasta 35% de descuento</h3>
-            <h4>Productos más vendidos</h4>
-            <p>Por compras superiores a S/100</p>
+            <h3>Entrega gratuita</h3>
+            <!--<h4>Productos más vendidos</h4>-->
+            <p>Por compras superiores a S/150</p>
             <a class="button button--active mt-3 mt-xl-4" href="{{route('product.index')}}">Comprar ahora</a>
           </div>
         </div>
