@@ -1,7 +1,7 @@
 @extends('layouts.admin-app')
 
 @section('breadcrumb')
-@include('admin.shared.breadcrumb', ['title' => 'Crear producto'])
+@include('admin.shared.breadcrumb', ['title' => 'Crear producto', 'icon' => 'null'])
 @endsection
 
 @section('content')
@@ -11,6 +11,16 @@
         <button type="button" class="close" aria-label="Close" data-dismiss="alert"><span aria-hidden="true">×</span></button>
         <h6 class="alert-heading"><strong>{{ session('message') }}</strong></h6>
     	<p>{{ session('description') }}</p>
+    </div>
+@endif
+@if($errors->any())
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <button type="button" class="close" aria-label="Close" data-dismiss="alert"><span aria-hidden="true">×</span></button>
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
     </div>
 @endif
 <div class="row">
@@ -65,11 +75,12 @@
 					</div>
 					<div class="position-relative form-group">
 						<label for="picture" class="">Imágenes</label>
-						<input name="picture[]" id="picture" type="file" class="form-control-file" multiple="multiple">
+						<!--<input name="picture[]" id="picture" type="file" class="form-control-file" multiple="multiple">-->
+						<input name="picture" id="picture" type="file" class="form-control-file">
 						<small class="form-text text-muted">Seleciona una o más imágenes referentes al producto.</small>
 					</div>
 					<input type="hidden" name="category_id" value="{{$product->id ? $product->category_id : '' }}">
-					<input type="hidden" name="color_id" value="{{$product->id ? $product->color_id : '' }}">
+					<!--<input type="hidden" name="color_id" value="{{$product->id ? $product->color_id : '' }}">-->
 					<button class="mt-1 btn btn-primary">{{$btnText}}</button>
 				</form>
 			</div>
@@ -82,23 +93,19 @@
                 <h5 class="card-title">Categoría</h5>
                 <div class="position-relative form-group">
                     <div>
+                    	@foreach(App\Category::all() as $category)
                         <div class="custom-radio custom-control">
-                        	<input type="radio" id="category_1" name="category" class="custom-control-input" value="1">
-                        	<label class="custom-control-label" for="category_1">
-                        		Categoría 1
+                        	<input type="radio" id="category_{{$category->id}}" name="category" class="custom-control-input" value="{{$category->id}}">
+                        	<label class="custom-control-label" for="category_{{$category->id}}">
+                        		{{$category->name}}
                         	</label>
                         </div>
-                        <div class="custom-radio custom-control">
-                        	<input type="radio" id="category_2" name="category" class="custom-control-input" value="2">
-                        	<label class="custom-control-label" for="category_2">
-                        		Categoría 2
-                        	</label>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
         </div>
-        <div class="main-card mb-3 card">
+        <!--<div class="main-card mb-3 card">
             <div class="card-body">
                 <h5 class="card-title">Color</h5>
                 <div class="position-relative form-group">
@@ -117,7 +124,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>-->
 	</div>
 </div>
 @endsection

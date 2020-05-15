@@ -21,6 +21,17 @@ Vue.component('home-best-seller', require('./components/home/BestSeller.vue').de
 Vue.component('billing-component', require('./components/checkout/Billing.vue').default);
 Vue.component('product-detail', require('./components/product/Detail.vue').default);
 Vue.component('newsletter-component', require('./components/template/Newsletter.vue').default);
+
+
+/*=============================================
+=            Section comment block            =
+=============================================*/
+
+Vue.component('sales-chart', require('./components/dashboard/Sales.vue').default);
+Vue.component('best-selling', require('./components/dashboard/BestSelling.vue').default);
+Vue.component('prueba', require('./components/dashboard/Prueba.vue').default);
+/*=====  End of Section comment block  ======*/
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

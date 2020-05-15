@@ -16,7 +16,7 @@ class CreateProductsTable extends Migration {
 			$table->string('name');
 			$table->unsignedInteger('category_id');
 			$table->foreign('category_id')->references('id')->on('categories');
-			$table->unsignedInteger('color_id');
+			$table->unsignedInteger('color_id')->nullable();
 			$table->foreign('color_id')->references('id')->on('colors');
 			$table->string('keywords')->nullable();
 			$table->string('short_description')->nullable();

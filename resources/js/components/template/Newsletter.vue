@@ -38,7 +38,7 @@
 			      this.$v.$touch()
 			      if (this.$v.$invalid) {
 
-			      } else {
+			      } else { 
 			        const {data} = await Vue.axios({
 						method: 'POST',
 						url: '/api/email-subscription',

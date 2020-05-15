@@ -78,7 +78,7 @@
     <!-- Scripts -->
     <script src="https://maps.google.com/maps/api/js?sensor=true"></script>
     <script type="text/javascript" src="{{asset('admin/assets/scripts/main.js')}}"></script>
-    <!-- <script type="text/javascript" src="{{ asset('js/app.js') }}"></script> -->
+    <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
     @stack('scripts')
 </body>
 </html>

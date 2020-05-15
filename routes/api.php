@@ -28,3 +28,6 @@ Route::post('coupon', 'CouponController@getCoupon');
 
 Route::get('search', 'ProductController@searchProducts');
 Route::get('best-seller', 'ProductController@bestSeller');
+
+Route::get('/sell-cost', 'DashboardController@sellCost');
+Route::get('/best-selling', 'DashboardController@bestSelling');

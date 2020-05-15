@@ -59,8 +59,20 @@ class ProductController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function store(Request $request) {
-		$pictures = Helper::uploadFile('picture', 'products');
-		$request->merge(['picture' => $pictures]);
+		$validatedData = $request->validate([
+			'name' => 'required',
+			'short_description' => 'required',
+			'keywords' => 'required',
+			'cost' => 'required',
+			'price' => 'required',
+			'stock' => 'required',
+			'picture' => 'required',
+			'category_id' => 'required',
+		]);
+		// $pictures = Helper::uploadFiles('picture', 'products');
+		$picture = Helper::uploadFile('picture', 'products');
+		// $request->merge(['picture' => $pictures]);
+		$request->merge(['picture' => $picture]);
 		$product = Product::create($request->input());
 		return back()->with(['message' => 'Producto creado correctamente', 'description' => 'Has creado un nuevo producto, puedes editarlo en cualquier momento.']);
 	}
