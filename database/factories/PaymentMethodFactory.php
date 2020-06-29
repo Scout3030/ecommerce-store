@@ -9,5 +9,6 @@ $factory->define(PaymentMethod::class, function (Faker $faker) {
 	return [
 		'name' => $faker->word,
 		'picture' => $faker->word,
+		'description' => $faker->sentence,
 	];
 });

@@ -26,6 +26,9 @@ class CreateProductsTable extends Migration {
 			$table->float('price', 8, 2);
 			$table->integer('stock');
 			$table->string('slug');
+			$table->enum('status', [
+				\App\Product::UNPUBLISHED, \App\Product::PUBLISHED,
+			])->default(\App\Product::PUBLISHED);
 			$table->timestamps();
 			$table->softDeletes();
 		});

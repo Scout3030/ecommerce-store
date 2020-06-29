@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Cache-control" content="public">
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -28,6 +29,8 @@
 
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     @stack('styles')
+
+    @stack('facebook-og')
 </head>
 <body>
     <div id="app">
@@ -41,7 +44,7 @@
 
     <script src="{{asset('assets/vendors/jquery/jquery-3.2.1.min.js')}}"></script>
     <script src="{{asset('assets/vendors/bootstrap/bootstrap.bundle.min.js')}}"></script>
-    <script src="{{asset('assets/vendors/skrollr.min.js')}}"></script>
+    <!--<script src="{{asset('assets/vendors/skrollr.min.js')}}"></script>-->
     <script src="{{asset('assets/vendors/owl-carousel/owl.carousel.min.js')}}"></script>
     <script src="{{asset('assets/vendors/nice-select/jquery.nice-select.min.js')}}"></script>
     @stack('scripts')

@@ -8,6 +8,22 @@
                     Dashboard
                 </a>
             </li>
+            <li class="app-sidebar__heading">Pedidos</li>
+            <li>
+                <a href="#">
+                    <i class="metismenu-icon pe-7s-diamond"></i>
+                    Pedidos
+                    <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                </a>
+                <ul>
+                    <li>
+                        <a href="{{route('admin.sell.index')}}">
+                            <i class="metismenu-icon">
+                            </i>Pedidos
+                        </a>
+                    </li>
+                </ul>
+            </li>
             <li class="app-sidebar__heading">Productos</li>
             <li>
                 <a href="#">

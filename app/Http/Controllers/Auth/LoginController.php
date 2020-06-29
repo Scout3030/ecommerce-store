@@ -37,11 +37,17 @@ class LoginController extends Controller {
 	}
 
 	public function authenticated(Request $request, $user) {
-		// dd($request);
+
 		if (session('checkout')) {
 			session()->forget('checkout');
 			return back();
 		}
+
+		if (session('opinion')) {
+			session()->forget('opinion');
+			return back();
+		}
+
 		return redirect()->route('product.index');
 	}
 }

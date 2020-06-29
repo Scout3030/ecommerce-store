@@ -1,6 +1,5 @@
 <template>
   <div class="row">
-  
     <div class="col-md-6 col-lg-4 col-xl-3" v-for="product in products">
       <div class="card text-center card-product">
         <div class="card-product__img">
@@ -19,19 +18,26 @@
         </div>
       </div>
     </div>
-
+    <loader :show="show" @close="show = false"></loader>
   </div>
 </template>
 
 <script>
   import ProductCard from './../product/Card' 
   import {mapState, mapActions, mapMutations} from 'vuex'
+  import Loader from './../cart/Loader'
   export default {
+    data(){
+      return {
+        show: false
+      }
+    },
     mounted(){
       this.fetchBestSellers()
     },
     components: {
-      ProductCard
+      ProductCard,
+      Loader
     },
     methods:{
       ...mapMutations('cart', ['addProduct']),
@@ -41,11 +47,11 @@
       },
       addToCart(product){
         this.addProduct(product)
+        this.show = true   
       },
       redirectToProduct(product){
         window.open(`/producto/${product.slug}`, '_blank');
       }
-
     },
     computed : {
       ...mapState('product', ['products'])

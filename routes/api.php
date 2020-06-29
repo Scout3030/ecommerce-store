@@ -27,6 +27,7 @@ Route::apiResource('email-subscription', 'EmailSubscriptionController');
 Route::post('coupon', 'CouponController@getCoupon');
 
 Route::get('search', 'ProductController@searchProducts');
+Route::get('category/{category}/search', 'ProductController@searchProductsByCategory');
 Route::get('best-seller', 'ProductController@bestSeller');
 
 Route::get('/sell-cost', 'DashboardController@sellCost');

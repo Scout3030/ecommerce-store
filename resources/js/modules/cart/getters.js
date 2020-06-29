@@ -1,6 +1,6 @@
 export function totalCost(state){
 	return state.cart.reduce((sum, product) => {
-		return (parseFloat(product.price) * product.qty) + sum
+		return Math.round((parseFloat(product.price) * product.qty)*100)/100 + Math.round(sum*100)/100
 	}, 0)
 }
 

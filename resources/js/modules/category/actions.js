@@ -12,6 +12,6 @@ export async function fetchCategories ({commit}){
 		commit('categoriesError', e.message)
 	} finally {
 		// context.commit('setloading', false, {root: true})
-		console.log('Finally categories')
+		// console.log('Finally categories')
 	}
 }

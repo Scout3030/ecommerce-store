@@ -70,7 +70,8 @@ class ProductController extends Controller {
 			'category_id' => 'required',
 		]);
 		// $pictures = Helper::uploadFiles('picture', 'products');
-		$picture = Helper::uploadFile('picture', 'products');
+		// $picture = Helper::uploadFile('picture', 'products');
+		$picture = Helper::uploadFileResize('picture', 'products');
 		// $request->merge(['picture' => $pictures]);
 		$request->merge(['picture' => $picture]);
 		$product = Product::create($request->input());
@@ -89,26 +90,37 @@ class ProductController extends Controller {
 			->get();
 
 		if ($request->has('word')) {
+			$products = Product::with(['category'])
+				->where('name', 'like', '%' . $request->word . '%')
+				->orWhere('keywords', 'like', '%' . $request->word . '%')
+				->orWhere('short_description', 'like', '%' . $request->word . '%')
+				->orWhere('long_description', 'like', '%' . $request->word . '%')
+				->get();
+		}
+
+		$ids = $products->modelKeys();
+
+		$products = Product::whereIn('id', $ids)->paginate(6);
+
+		return response()->json($products);
+	}
+
+	public function searchProductsByCategory($category, Request $request) {
+
+		$products = Product::with(['category'])->whereCategoryId($category)
+			->get();
+
+		if ($request->has('word')) {
 			$this->word = $request->word;
-			$products = $products->filter(function ($value, $key) {
-				return strpos($value->name, $this->word) ||
-				strpos($value->long_description, $this->word) ||
-				strpos($value->short_description, $this->word);
-			});
-		}
-
-		if ($request->has('color')) {
-			$this->color = $request->color;
-			$products = $products->filter(function ($value, $key) {
-				return $value->color_id == $this->color;
-			});
-		}
-
-		if ($request->has('category')) {
-			$this->category = $request->category;
-			$products = $products->filter(function ($value, $key) {
-				return $value->category_id == $this->category;
-			});
+			$products = Product::with(['category'])
+				->whereCategoryId($category)
+				->where(function ($query) {
+					$query->where('name', 'like', '%' . $this->word . '%')
+						->orWhere('keywords', 'like', '%' . $this->word . '%')
+						->orWhere('short_description', 'like', '%' . $this->word . '%')
+						->orWhere('long_description', 'like', '%' . $this->word . '%');
+				})
+				->get();
 		}
 
 		$ids = $products->modelKeys();
@@ -195,12 +207,14 @@ class ProductController extends Controller {
 
 	public function datatable() {
 		$products = Product::get();
+		$image = 'admin.product.datatable.image';
 		$actions = 'admin.product.datatable.actions';
 		return datatables()->of($products)
 			->editColumn('cost', 'S/ {{$cost}}')
 			->editColumn('price', 'S/ {{$price}}')
+			->addColumn('image', $image)
 			->addColumn('actions', $actions)
-			->rawColumns(['actions'])
+			->rawColumns(['actions', 'image'])
 			->toJson();
 	}
 }

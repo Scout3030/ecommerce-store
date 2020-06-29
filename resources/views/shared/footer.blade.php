@@ -7,11 +7,7 @@
           <div class="single-footer-widget tp_widgets">
             <h4 class="footer_title large_title">Nuestra Misión</h4>
             <p>
-              So seed seed green that winged cattle in. Gathering thing made fly you're no
-              divided deep moved us lan Gathering thing us land years living.
-            </p>
-            <p>
-              So seed seed green that winged cattle in. Gathering thing made fly you're no divided deep moved
+              Distribuir los mejores productos en la ciudad de Huamachuco
             </p>
           </div>
         </div>
@@ -21,6 +17,9 @@
             <ul class="list">
               <li><a href="{{route('home')}}">Inicio</a></li>
               <li><a href="{{route('product.index')}}">Tienda</a></li>
+              <li><a href="{{route('FAQ')}}">Preguntas frecuentes</a></li>
+              <li><a href="{{route('reviews')}}">Opiniones</a></li>
+              <li><a href="{{route('about')}}">Nosotros</a></li>
               <li><a href="{{route('contact')}}">Contacto</a></li>
             </ul>
           </div>

@@ -18,8 +18,14 @@ class CreateSellsTable extends Migration {
 			$table->string('amount');
 			$table->unsignedInteger('payment_method_id')->nullable();
 			$table->foreign('payment_method_id')->references('id')->on('payment_methods');
-			$table->unsignedInteger('shipping_id')->nullable();
+			$table->unsignedInteger('shipping_id')->default(3);
 			$table->foreign('shipping_id')->references('id')->on('shippings');
+			$table->string('client_name');
+			$table->string('client_address');
+			$table->string('client_phone');
+			$table->string('client_message')->nullable();
+			$table->enum('status', [\App\Sell::FINISHED, \App\Sell::INPROCESS, \App\Sell::REJECTED])
+				->default(\App\Sell::INPROCESS);
 			$table->timestamps();
 			$table->softDeletes();
 		});

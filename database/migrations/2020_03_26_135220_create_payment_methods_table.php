@@ -14,6 +14,9 @@ class CreatePaymentMethodsTable extends Migration {
 		Schema::create('payment_methods', function (Blueprint $table) {
 			$table->increments('id');
 			$table->string('name');
+			$table->string('description');
+			$table->enum('status', [\App\PaymentMethod::ACTIVE, \App\PaymentMethod::INACTIVE])
+				->default(\App\PaymentMethod::INACTIVE);
 			$table->string('picture');
 			$table->timestamps();
 		});

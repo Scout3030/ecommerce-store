@@ -18,7 +18,6 @@ class CreateSoldProductsTable extends Migration {
 			$table->unsignedInteger('product_id');
 			$table->foreign('product_id')->references('id')->on('products');
 			$table->integer('qty');
-			$table->timestamps();
 		});
 	}
 

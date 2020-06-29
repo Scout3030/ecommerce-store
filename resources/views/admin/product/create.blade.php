@@ -125,6 +125,24 @@
                 </div>
             </div>
         </div>-->
+        @if($product->id)
+        <div class="main-card mb-3 card">
+            <div class="card-body">
+                <h5 class="card-title">Imagen</h5>
+                <div class="position-relative form-group">
+                    <div>
+                    	
+                    	@if($product->pathAttachment())
+                        <img src="{{$product->pathAttachment()}}" alt="{{$product->name}}" class="img-responsive">
+                        @else
+                        Producto sin imágen
+                        @endif
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endif
 	</div>
 </div>
 @endsection

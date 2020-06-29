@@ -56,12 +56,9 @@
 							<div class="shipping_box">
 								<ul class="list" v-if="totalCost < 150">
 									<li 
-										class="active"
-										v-for="shipping in shippingMethods" 
-										:key="shipping.id" 
-										@click="selectShippingMethod(shipping)"
+										class="active" 
 									>
-										<a href="javascript:void(0)">{{shipping.name}}</a>
+										<a href="javascript:void(0)">Huamachuco: S/5</a>
 									</li>
 								</ul>
 								<ul class="list" v-else>
@@ -72,21 +69,11 @@
 									</li>
 								</ul>
 								<h6>
-									Calcular envío 
+									Precio total
 									<i class="fa fa-caret-down" aria-hidden="true"></i>
 								</h6>
-								<select class="shipping_select" v-if="lima">
-									<option value="1">Lince</option>
-									<option value="2">Pueblo libre</option>
-									<option value="4">Magdalena del Mar</option>
-								</select>
-								<select class="shipping_select" v-if="agency || olva">
-									<option value="1">La libertad</option>
-									<option value="2">Cajamarca</option>
-									<option value="4">Piura</option>
-								</select>
-								<label>Precio</label>
-								<input type="text" readonly>
+								<input v-if="totalCost < 150" type="text" :placeholder="totalCostShipping" readonly>
+								<input v-else type="text" :placeholder="totalCostFreeShipping" readonly>
 							</div>
 						</td>
 					</tr>
@@ -120,11 +107,7 @@
 		data(){
 			return {
 				free: false,
-				store: false,
-				lima: false,
-				olva: false,
-				agency: false,
-				coupon: null
+				coupon:null
 			}
 		},
 		components: {
@@ -133,49 +116,6 @@
 		methods: {
 			...mapActions('shipping', ['fetchShippingMethods']),
 			...mapActions('coupon', ['fetchCoupon']),
-			...mapMutations('shipping', ['setShipping']),
-			selectShippingMethod(shipping){
-				this.setShipping(shipping)
-				if (this.selectedShippingMethod.id == 1) {
-					this.free = true
-					this.store = false
-					this.lima = false
-					this.olva = false
-					this.agency = false
-				}
-
-				if (this.selectedShippingMethod.id == 2) {
-					this.free = false
-					this.store = true
-					this.lima = false
-					this.olva = false
-					this.agency = false
-				}
-
-				if (this.selectedShippingMethod.id == 3) {
-					this.free = false
-					this.store = false
-					this.lima = true
-					this.olva = false
-					this.agency = false
-				}
-				
-				if (this.selectedShippingMethod.id == 4) {
-					this.free = false
-					this.store = false
-					this.lima = false
-					this.olva = true
-					this.agency = false
-				}
-
-				if (this.selectedShippingMethod.id == 5) {
-					this.free = false
-					this.store = false
-					this.lima = false
-					this.olva = false
-					this.agency = true
-				}
-			},
 			async applyCoupon(){
 				this.fetchCoupon(this.coupon)
 			}
@@ -184,7 +124,13 @@
 			...mapState('coupon', ['selectedCoupon']),
 			...mapGetters('cart', ['totalCost']),
 			...mapState('cart', ['cart']),
-			...mapState('shipping', ['shippingMethods', 'selectedShippingMethod'])
+			...mapState('shipping', ['shippingCost']),
+			totalCostFreeShipping(){
+				return `S/ ${this.totalCost}`
+			},
+			totalCostShipping(){
+				return `S/ ${this.totalCost + this.shippingCost}`
+			}
 		}
 	}
 </script>

@@ -13,6 +13,16 @@
     	<p>{{ session('description') }}</p>
     </div>
 @endif
+@if ($errors->any())
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <button type="button" class="close" aria-label="Close" data-dismiss="alert"><span aria-hidden="true">×</span></button>
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 <div class="row">
 	<div class="col-md-6">
 		<div class="main-card mb-3 card">

@@ -22,6 +22,7 @@ Vue.component('billing-component', require('./components/checkout/Billing.vue').
 Vue.component('product-detail', require('./components/product/Detail.vue').default);
 Vue.component('newsletter-component', require('./components/template/Newsletter.vue').default);
 
+Vue.component('confirm-order', require('./components/confirm/Order.vue').default);
 
 /*=============================================
 =            Section comment block            =
@@ -30,6 +31,7 @@ Vue.component('newsletter-component', require('./components/template/Newsletter.
 Vue.component('sales-chart', require('./components/dashboard/Sales.vue').default);
 Vue.component('best-selling', require('./components/dashboard/BestSelling.vue').default);
 Vue.component('prueba', require('./components/dashboard/Prueba.vue').default);
+
 /*=====  End of Section comment block  ======*/
 
 /**

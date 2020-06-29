@@ -1,7 +1,7 @@
 const getImageUrl ={
 	install: (Vue, options) => {
-		Vue.prototype.$getImageUrl = (folder, attachment) => {
-			return `/images/${folder}/${attachment}`
+		Vue.prototype.$getImageUrl = (folder, size, attachment) => {
+			return `/images/${folder}/${size}/${attachment}`
 		}
 	}
 }

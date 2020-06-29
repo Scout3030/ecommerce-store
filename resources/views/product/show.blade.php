@@ -1,5 +1,13 @@
 @extends('layouts.app')
 
+@push('facebook-og')
+<meta property="og:url"                content="{{route('product.show', $product->slug)}}" />
+<meta property="og:type"               content="article" />
+<meta property="og:title"              content="{{$product->name}}" />
+<meta property="og:description"        content="{{$product->long_description}}" />
+<meta property="og:image"              content="{{$product->pathAttachment()}}" />
+@endpush
+
 @push('styles')
 <link rel="stylesheet" href="{{asset('assets/vendors/linericon/style.css')}}">
 @endpush
@@ -7,7 +15,22 @@
 @section('content')
 
 <!--================Single Product Area =================-->
-<product-detail :product="{{$product}}"></product-detail>
+<div class="product_image_area">
+	<div class="container">
+		<div class="row s_product_inner">
+			<div class="col-lg-6">
+				<div class="owl-theme s_Product_carousel">
+					<div class="single-prd-item">
+						<img class="img-fluid" src="{{$product->pathAttachment('large')}}" alt="{{$product->name}}" width="80%">
+					</div>
+				</div>
+			</div>
+			<product-detail :product="{{$product}}"></product-detail>
+		</div>
+	</div>
+</div>
+
+
 <!--================End Single Product Area =================-->
 
 <!--================Product Description Area =================-->
@@ -17,10 +40,10 @@
 			<li class="nav-item">
 				<a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Descripción</a>
 			</li>
-			<li class="nav-item">
+			<!-- <li class="nav-item">
 				<a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
 				 aria-selected="false">Especificaciones</a>
-			</li>
+			</li> -->
 			<li class="nav-item">
 				<a class="nav-link active" id="review-tab" data-toggle="tab" href="#review" role="tab" aria-controls="review"
 				 aria-selected="false">Opiniones</a>
@@ -30,7 +53,7 @@
 			<div class="tab-pane fade" id="home" role="tabpanel" aria-labelledby="home-tab">
 				<p>{{$product->long_description}}</p>
 			</div>
-			<div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+			<!-- <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
 				<div class="table-responsive">
 					<table class="table">
 						<tbody>
@@ -101,7 +124,7 @@
 						</tbody>
 					</table>
 				</div>
-			</div>
+			</div> -->
 			<div class="tab-pane fade show active" id="review" role="tabpanel" aria-labelledby="review-tab">
 				<div class="row">
 					<div class="col-lg-6">

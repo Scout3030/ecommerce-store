@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder {
 		// Storage::makeDirectory('users');
 
 		factory(\App\Role::class, 1)->create(['name' => 'admin']);
-		factory(\App\Role::class, 1)->create(['name' => 'user']);
+		factory(\App\Role::class, 1)->create(['name' => 'buyer']);
 
 		factory(\App\User::class, 1)->create([
 			'name' => 'admin',
@@ -53,32 +53,44 @@ class DatabaseSeeder extends Seeder {
 
 		factory(\App\Shipping::class, 1)->create([
 			'name' => 'Gratis',
+			'price' => 0.00,
 		]);
 		factory(\App\Shipping::class, 1)->create([
 			'name' => 'Recojo en tienda',
+			'price' => 5.00,
 		]);
 		factory(\App\Shipping::class, 1)->create([
-			'name' => 'Lima Metropolitana',
+			'name' => 'Huamachuco',
+			'price' => 5.00,
 		]);
-		factory(\App\Shipping::class, 1)->create([
-			'name' => 'Olva Courier',
-		]);
-		factory(\App\Shipping::class, 1)->create([
-			'name' => 'Agencia de transporte',
-		]);
+		// factory(\App\Shipping::class, 1)->create([
+		// 	'name' => 'Lima Metropolitana',
+		// ]);
+		// factory(\App\Shipping::class, 1)->create([
+		// 	'name' => 'Olva Courier',
+		// ]);
+		// factory(\App\Shipping::class, 1)->create([
+		// 	'name' => 'Agencia de transporte',
+		// ]);
 
 		factory(\App\PaymentMethod::class, 1)->create([
 			'name' => 'Depósito en cuenta',
 		]);
 		factory(\App\PaymentMethod::class, 1)->create([
-			'name' => 'Mercadopago',
+			'name' => 'T. crédito/débito',
 		]);
 		factory(\App\PaymentMethod::class, 1)->create([
-			'name' => 'PayU',
+			'name' => 'Yape / Tunki / Lukita',
 		]);
-		factory(\App\PaymentMethod::class, 1)->create([
-			'name' => 'Paypal',
-		]);
+		// factory(\App\PaymentMethod::class, 1)->create([
+		// 	'name' => 'Mercadopago',
+		// ]);
+		// factory(\App\PaymentMethod::class, 1)->create([
+		// 	'name' => 'PayU',
+		// ]);
+		// factory(\App\PaymentMethod::class, 1)->create([
+		// 	'name' => 'Paypal',
+		// ]);
 
 		factory(\App\Coupon::class, 10)->create();
 	}

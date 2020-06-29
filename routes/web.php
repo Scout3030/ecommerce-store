@@ -13,8 +13,9 @@
 
 Auth::routes();
 
-Route::get('/images/{path}/{attachment}', function ($path, $attachment) {
-	$file = sprintf('storage/%s/%s', $path, $attachment);
+Route::get('/images/{path}/{size}/{attachment}', function ($path, $size, $attachment) {
+	$file = sprintf('storage/%s/%s/%s', $path, $size, $attachment);
+	// return $file;
 	if (File::exists($file)) {
 		return Image::make($file)->response();
 	}
@@ -27,6 +28,7 @@ Route::get('/nosotros', function () {
 })->name('about');
 
 Route::get('/opiniones', function () {
+	session(['opinion' => true]);
 	return view('reviews');
 })->name('reviews');
 
@@ -38,10 +40,25 @@ Route::get('/contacto', function () {
 	return view('contact');
 })->name('contact');
 
+Route::post('/contacto', function () {
+	return back();
+})->name('contact.post');
+
 Route::get('/checkout', function () {
 	session(['checkout' => true]);
 	return view('checkout');
 })->name('checkout');
+
+Route::get('/gracias/{sell}', function (App\Sell $sell) {
+	$sell->load([
+		'soldProducts' => function ($q) {
+			$q->with(['product']);
+		},
+		'shipping',
+		'paymentMethod',
+	]);
+	return view('confirmation', compact('sell'));
+})->name('confirmation');
 
 Route::get('/tienda', 'ProductController@home')->name('product.index');
 
@@ -53,6 +70,14 @@ Route::group(['prefix' => 'producto'], function () {
 Route::get('/carrito', function () {
 	return view('cart');
 })->name('cart');
+
+/*=====================================
+=            PDF Generator            =
+=====================================*/
+
+Route::get('/order/{sell}', 'PDFGeneratorController@generatePDF');
+
+/*=====  End of PDF Generator  ======*/
 
 /*=============================================
 =            Sell comment block            =
@@ -70,6 +95,16 @@ Route::group(['prefix' => "sells"], function () {
 });
 
 /*=====  End of Sell comment block  ======*/
+
+/*=============================================
+=            Opinion block            =
+=============================================*/
+
+Route::group(['prefix' => "opinion"], function () {
+	Route::post('/', 'OpinionController@store')->name('opinion.store');
+});
+
+/*=====  End of Opinion block  ======*/
 
 /*=============================
 =            admin            =
@@ -110,6 +145,19 @@ Route::group(['prefix' => "dashboard", "middleware" => ['auth', sprintf("role:%s
 		Route::put('/{color}', 'ColorController@update')->name('admin.color.update');
 		Route::delete('/{color}', 'ColorController@destroy')->name('admin.color.delete');
 		Route::get('/datatable', 'ColorController@datatable')->name('admin.color.datatable');
+	});
+
+	Route::group(['prefix' => "orders"], function () {
+
+		Route::get('/', 'Admin\SellController@index')->name('admin.sell.index');
+		Route::get('/show/{sell}', 'Admin\SellController@show')->name('admin.sell.show');
+		Route::get('/edit/{sell}', 'Admin\SellController@edit')->name('admin.sell.edit');
+		Route::put('/reject/{sell}', 'Admin\SellController@reject')
+			->name('admin.sell.reject');
+		Route::put('/complete/{sell}', 'Admin\SellController@complete')
+			->name('admin.sell.complete');
+		Route::get('/datatable', 'Admin\SellController@datatable')
+			->name('admin.sell.datatable');
 	});
 
 });

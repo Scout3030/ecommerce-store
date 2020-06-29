@@ -23,6 +23,10 @@ class CategoryController extends Controller {
 	}
 
 	public function store(Request $request) {
+		$validatedData = $request->validate([
+			'name' => 'required|unique|max:50',
+			'picture' => 'required',
+		]);
 		$picture = Helper::uploadFile('picture', 'categories');
 		$request->merge(['picture' => $picture]);
 		$category = Category::create($request->input());
@@ -35,6 +39,9 @@ class CategoryController extends Controller {
 	}
 
 	public function update(Request $request, Category $category) {
+		$validatedData = $request->validate([
+			'name' => 'required|unique|max:50',
+		]);
 		if ($request->hasFile('picture')) {
 			\Storage::delete('courses/' . $course->picture);
 			$picture = Helper::uploadFile("picture", 'courses');

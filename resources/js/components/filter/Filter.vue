@@ -33,7 +33,7 @@
 
 			</div>
 			<div v-else>
-				<div><p><b>No hay productos en esta búsqueda, intente con una palabra clave diferente</b></p></div>
+				<div><p><b>No hay productos para esta búsqueda, intente con una palabra clave diferente o busque en otra categoría</b></p></div>
 			</div>
 
 		</section>
@@ -66,6 +66,7 @@
 	      	}
 	    },
 	    mounted(){
+	    	// this.word = this.selectedWord
 	    	this.search()
 	    },
 	    components: {
@@ -82,24 +83,25 @@
 
 				axios.get(this.selectedUrl)
 					.then((response) => {
+						// console.log("response", response);
 						this.products = response.data.data
 					});
 
-				this.searching = false;
+				this.searching = false
+				this.word = ''
+				this.setWord(this.word)
 			},
 			updateResource: function(data){
 				this.products = data;
 			},
 			searchProducts(word){
-				console.log('searching', word)
 				this.setWord(word)
-        		this.setUrl([this.selectedCategory, this.selectedColor, this.selectedWord])
+        		this.setUrl([this.selectedCategory, this.selectedWord])
         		this.search()
 			}
 		},
 	    computed: {
-	      	...mapState('filter', ['selectedCategory', 'selectedColor', 'selectedWord', 'selectedUrl']),
+	      	...mapState('filter', ['selectedCategory', 'selectedWord', 'selectedUrl']),
 	    },
 	}
-	
 </script>

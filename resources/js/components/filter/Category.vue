@@ -40,13 +40,13 @@
         	...mapMutations('filter', ['setCategory', 'setUrl']),
 		    getCategory(id){
 		        this.setCategory(id)
-		        this.setUrl([this.selectedCategory, this.selectedColor, this.selectedWord])
+		        this.setUrl([this.selectedCategory, this.selectedWord])
 		    }
         },
         computed: {
         	...mapState('category', ['categories']),
         	...mapState('product', ['products']),
-        	...mapState('filter', ['selectedCategory', 'selectedColor', 'selectedWord']),
+        	...mapState('filter', ['selectedCategory', 'selectedWord']),
         },
 		filters: {
 			capitalize: function (value) {

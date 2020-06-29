@@ -11,6 +11,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model {
 
+	const PUBLISHED = 1;
+	const UNPUBLISHED = 2;
+
 	use SoftDeletes;
 
 	protected $fillable = ['name', 'category_id', 'color_id', 'short_description', 'long_description', 'picture', 'keywords', 'cost', 'price', 'stock'];
@@ -24,8 +27,22 @@ class Product extends Model {
 		});
 	}
 
-	public function pathAttachment() {
-		return "/images/products/" . $this->picture;
+	public function pathAttachment($size = 'original') {
+		switch ($size) {
+			case 'small':
+				return "/images/products/300x300/" . $this->picture;
+				break;
+			case 'medium':
+				return "/images/products/600x600/" . $this->picture;
+				break;
+			case 'large':
+				return "/images/products/999x999/" . $this->picture;
+				break;
+			default:
+				return "/images/products/original/" . $this->picture;
+				break;
+		}
+		
 	}
 
 	public function category() {

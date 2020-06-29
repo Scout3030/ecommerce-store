@@ -9,7 +9,7 @@
 					<img class="card-img rounded-0" src="{{asset('assets/img/services/desktop-design.jpg')}}" alt="post">
 					<div class="categories_details">
 						<div class="categories_text">
-							<a href="single-blog.html">
+							<a href="javascript:void(0)">
 								<h5>Aplicaciones de escritorio</h5>
 							</a>
 							<div class="border_line"></div>
@@ -23,7 +23,7 @@
 					<img class="card-img rounded-0" src="{{asset('assets/img/services/web-design.jpg')}}" alt="post">
 					<div class="categories_details">
 						<div class="categories_text">
-							<a href="single-blog.html">
+							<a href="javascript:void(0)">
 								<h5>Aplicaciones web</h5>
 							</a>
 							<div class="border_line"></div>
@@ -37,7 +37,7 @@
 					<img class="card-img rounded-0" src="{{asset('assets/img/services/digital-marketing.jpg')}}" alt="post">
 					<div class="categories_details">
 						<div class="categories_text">
-							<a href="single-blog.html">
+							<a href="javascript:void(0)">
 								<h5>Marketing digital</h5>
 							</a>
 							<div class="border_line"></div>

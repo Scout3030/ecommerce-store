@@ -1,0 +1,1 @@
+<img src="/images/products/{{$picture}}" alt="" width="60px">

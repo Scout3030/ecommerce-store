@@ -1,0 +1,92 @@
+<template>
+
+	<div v-if="show">
+		<div class="modal-mask">
+			<div class="modal-wrapper">
+				<div class="modal-container">
+					<div class="modal-header text-center">
+						<slot name="header">
+						Producto añadido correctamente
+						</slot>
+					</div>
+					<div class="text-center">
+					<img src="/assets/img/loader.gif" alt="Cargando" width="50px">
+					</div>
+					<div class="modal-footer text-center">
+						<slot name="footer">
+							<div class="d-block">
+								<button class="btn btn-hero mb-2" style="background: #384aeb; color: #fff" @click="toPay">
+								Finalizar pedido
+								</button>
+								<button class="btn btn-hero" @click="$emit('close')">
+								Seguir comprando
+								</button>
+							</div>
+						</slot>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+</template>
+
+<script>
+	export default {
+		props: ['show'],
+		methods: {
+			toPay(){
+				window.location.replace("/carrito")
+			}
+		}
+	};
+</script>
+
+<style>
+.modal-mask {
+position: fixed;
+z-index: 9998;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background-color: rgba(0, 0, 0, .5);
+display: table;
+transition: opacity .3s ease;
+}
+.modal-wrapper {
+display: table-cell;
+vertical-align: middle;
+}
+.modal-container {
+width: 300px;
+margin: 0px auto;
+padding: 20px 30px;
+background-color: #fff;
+border-radius: 2px;
+box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
+transition: all .3s ease;
+font-family: Helvetica, Arial, sans-serif;
+}
+.modal-header h3 {
+margin-top: 0;
+color: #42b983;
+}
+.modal-body {
+margin: 20px 0;
+}
+.modal-default-button {
+float: right;
+}
+/*
+* The following styles are auto-applied to elements with
+* transition="modal" when their visibility is toggled
+* by Vue.js.
+*
+* You can easily play with the modal transition by editing
+* these styles.
+*/
+.modal-enter {
+opacity: 0;
+}
+</style>

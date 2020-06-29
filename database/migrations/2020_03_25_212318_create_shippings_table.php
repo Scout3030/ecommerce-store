@@ -14,6 +14,8 @@ class CreateShippingsTable extends Migration {
 		Schema::create('shippings', function (Blueprint $table) {
 			$table->increments('id');
 			$table->string('name');
+			$table->string('description');
+			$table->float('price', 8, 2);
 			$table->enum('status', [
 				\App\Shipping::UNPUBLISHED, \App\Shipping::PUBLISHED,
 			])->default(\App\Shipping::PUBLISHED);

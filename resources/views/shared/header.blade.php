@@ -13,10 +13,10 @@
         <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
           <ul class="nav navbar-nav menu_nav ml-auto mr-auto">
             <li class="nav-item @if(Request::is('/')) active @endif"><a class="nav-link" href="{{route('home')}}">Inicio</a></li>
-            <li class="nav-item @if(Request::is('nosotros')) active @endif"><a class="nav-link" href="{{route('about')}}">Nosotros</a></li>
             <li class="nav-item @if(Request::is('tienda')) active @endif"><a class="nav-link" href="{{route('product.index')}}">Tienda</a></li>
             <li class="nav-item @if(Request::is('preguntas-frecuentes')) active @endif"><a class="nav-link" href="{{route('FAQ')}}">Preguntas frecuentes</a></li>
             <li class="nav-item @if(Request::is('opiniones')) active @endif"><a class="nav-link" href="{{route('reviews')}}">Opiniones</a></li>
+            <li class="nav-item @if(Request::is('nosotros')) active @endif"><a class="nav-link" href="{{route('about')}}">Nosotros</a></li>
             <li class="nav-item @if(Request::is('contacto')) active @endif"><a class="nav-link" href="{{route('contact')}}">Contacto</a></li>
           </ul>
 

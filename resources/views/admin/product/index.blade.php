@@ -16,6 +16,7 @@
                 <th>Costo</th>
                 <th>Precio</th>
                 <th>Stock</th>
+                <th>Imagen</th>
                 <th>Acciones</th>
             </tr>
             </thead>
@@ -30,6 +31,7 @@
                 <th>Costo</th>
                 <th>Precio</th>
                 <th>Stock</th>
+                <th>Imagen</th>
                 <th>Acciones</th>
             </tr>
             </tfoot>
@@ -60,6 +62,7 @@
                     {data: 'cost'},
                     {data: 'price'},
                     {data: 'stock'},
+                    {data: 'image'},
                     {data: 'actions'}
                 ]
             });

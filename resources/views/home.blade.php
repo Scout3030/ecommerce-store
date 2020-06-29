@@ -24,22 +24,6 @@
   </section>
   <!--================ Hero banner start =================-->
 
-  <!--================ Hero Carousel start =================-->
-  <section class="section-margin mt-0">
-    <div class="owl-carousel owl-theme hero-carousel">
-      @foreach($categories as $category)
-      <div class="hero-carousel__slide">
-        <img src="{{$category->pathAttachment()}}" alt="" class="img-fluid">
-        <a href="#" class="hero-carousel__slideOverlay">
-          <h3>{{$category->name}}</h3>
-          <p>{{$category->products->count()}}</p>
-        </a>
-      </div>
-      @endforeach
-    </div>
-  </section>
-  <!--================ Hero Carousel end =================-->
-
   <!-- ================ trending product section start ================= -->
   <section class="section-margin calc-60px">
     <div class="container">

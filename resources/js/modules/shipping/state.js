@@ -3,5 +3,5 @@ export default {
 	selectedSHippingMethod: {
 		id: null
 	},
-	shippingCost: 1
+	shippingCost: 5
 }
