@@ -2,7 +2,7 @@ import Vue from 'vue'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 
-const baseURL = 'https://store.dev/';
+const baseURL = 'http://emporiodelastelas.website/';
 
 axios.defaults.baseURL = baseURL;
  
