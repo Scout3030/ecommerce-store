@@ -3256,9 +3256,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     Loader: _cart_Loader__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapMutations"])('cart', ['addProduct']), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapActions"])('product', ['fetchBestSellers']), {
-    getImage: function getImage(attachment) {
-      return "/images/products/".concat(attachment);
-    },
     addToCart: function addToCart(product) {
       this.addProduct(product);
       this.show = true;
@@ -62223,7 +62220,7 @@ var render = function() {
         _c("div", { staticClass: "d-flex" }, [
           _c("img", {
             attrs: {
-              src: _vm.$getImageUrl("products", _vm.product.picture),
+              src: _vm.$getImageUrl("products", "300x300", _vm.product.picture),
               alt: "",
               height: "150px"
             }
@@ -63662,60 +63659,73 @@ var render = function() {
     { staticClass: "row" },
     [
       _vm._l(_vm.products, function(product) {
-        return _c("div", { staticClass: "col-md-6 col-lg-4 col-xl-3" }, [
-          _c("div", { staticClass: "card text-center card-product" }, [
-            _c("div", { staticClass: "card-product__img" }, [
-              _c("img", {
-                staticClass: "card-img",
-                attrs: { src: _vm.getImage(product.picture), alt: "" }
-              }),
-              _vm._v(" "),
-              _c("ul", { staticClass: "card-product__imgOverlay" }, [
-                _c("li", [
-                  _c(
-                    "button",
-                    {
-                      on: {
-                        click: function($event) {
-                          return _vm.redirectToProduct(product)
-                        }
-                      }
-                    },
-                    [_c("i", { staticClass: "ti-search" })]
-                  )
-                ]),
+        return _c(
+          "div",
+          { key: product.id, staticClass: "col-md-6 col-lg-4 col-xl-3" },
+          [
+            _c("div", { staticClass: "card text-center card-product" }, [
+              _c("div", { staticClass: "card-product__img" }, [
+                _c("img", {
+                  staticClass: "card-img",
+                  attrs: {
+                    src: _vm.$getImageUrl(
+                      "products",
+                      "300x300",
+                      product.picture
+                    ),
+                    alt: ""
+                  }
+                }),
                 _vm._v(" "),
-                _c("li", [
-                  _c(
-                    "button",
-                    {
-                      on: {
-                        click: function($event) {
-                          return _vm.addToCart(product)
+                _c("ul", { staticClass: "card-product__imgOverlay" }, [
+                  _c("li", [
+                    _c(
+                      "button",
+                      {
+                        on: {
+                          click: function($event) {
+                            return _vm.redirectToProduct(product)
+                          }
                         }
-                      }
-                    },
-                    [_c("i", { staticClass: "ti-shopping-cart" })]
-                  )
-                ])
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _c("p", [_vm._v(_vm._s(product.category.name))]),
-              _vm._v(" "),
-              _c("h4", { staticClass: "card-product__title" }, [
-                _c("a", { attrs: { href: _vm.$getProductUrl(product.slug) } }, [
-                  _vm._v(_vm._s(product.name))
+                      },
+                      [_c("i", { staticClass: "ti-search" })]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _c(
+                      "button",
+                      {
+                        on: {
+                          click: function($event) {
+                            return _vm.addToCart(product)
+                          }
+                        }
+                      },
+                      [_c("i", { staticClass: "ti-shopping-cart" })]
+                    )
+                  ])
                 ])
               ]),
               _vm._v(" "),
-              _c("p", { staticClass: "card-product__price" }, [
-                _vm._v("S/" + _vm._s(product.price))
+              _c("div", { staticClass: "card-body" }, [
+                _c("p", [_vm._v(_vm._s(product.category.name))]),
+                _vm._v(" "),
+                _c("h4", { staticClass: "card-product__title" }, [
+                  _c(
+                    "a",
+                    { attrs: { href: _vm.$getProductUrl(product.slug) } },
+                    [_vm._v(_vm._s(product.name))]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("p", { staticClass: "card-product__price" }, [
+                  _vm._v("S/" + _vm._s(product.price))
+                ])
               ])
             ])
-          ])
-        ])
+          ]
+        )
       }),
       _vm._v(" "),
       _c("loader", {
@@ -63798,7 +63808,7 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "card-body" }, [
-          _c("p", [_vm._v(_vm._s(_vm.product.name))]),
+          _c("p", [_vm._v(_vm._s(_vm.product.short_description))]),
           _vm._v(" "),
           _c("h4", { staticClass: "card-product__title" }, [
             _c(

@@ -1,9 +1,9 @@
 <template>
   <div class="row">
-    <div class="col-md-6 col-lg-4 col-xl-3" v-for="product in products">
+    <div class="col-md-6 col-lg-4 col-xl-3" v-for="product in products" :key="product.id">
       <div class="card text-center card-product">
         <div class="card-product__img">
-          <img class="card-img" :src="getImage(product.picture)" alt="">
+          <img class="card-img" :src="$getImageUrl('products', '300x300',product.picture)" alt="">
           <!-- <img class="card-img" src="{{$product->pathAttachment()}}" alt=""> -->
           <ul class="card-product__imgOverlay">
           <li><button @click="redirectToProduct(product)"><i class="ti-search"></i></button></li>
@@ -42,9 +42,6 @@
     methods:{
       ...mapMutations('cart', ['addProduct']),
       ...mapActions('product', ['fetchBestSellers']),
-      getImage(attachment){
-        return `/images/products/${attachment}`
-      },
       addToCart(product){
         this.addProduct(product)
         this.show = true   
